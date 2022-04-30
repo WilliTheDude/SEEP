@@ -3,7 +3,6 @@ package projectManagementSystem;
 import java.util.ArrayList;
 
 public class Activity {
-    // Fields
     private String ID;
     private String description;
     private int timetracking;
@@ -47,6 +46,16 @@ public class Activity {
 
     public void addAssignee(Employee employee1, Employee employee2){
         assignees.add(employee2);
+    }
+
+    // Special for test only
+    public void addAssignee(Employee employee) {
+        assignees.add(employee);
+    }
+
+
+    public void removeAssignee(Employee employee){
+        assignees.remove(employee);
     }
 
     public String getName(){return name;}

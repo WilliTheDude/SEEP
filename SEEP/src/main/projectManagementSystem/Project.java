@@ -13,13 +13,14 @@ public class Project {
     private String tempName;
     private String tempDesc;
     private boolean statusShown;
+    private ProjectManagementSystem scheduleApp;
 
     // Constructor
-    public Project(int year, int nr, String name, String description) {
-        ID = Integer.parseInt(year + "" + nr);
+    public Project(String name, String description) {
+        ID = 0; // noget
         this.name = name;
         this.description = description;
-        ProjectManagementSystem.addProjectToList(this);
+        scheduleApp.addProjectToList(this);
     }
 
     public Project(){}
@@ -43,6 +44,7 @@ public class Project {
     }
 
     public void addAssignee(Employee e) {assignees.add(e);}
+    public void removeAssignee(Employee e) {assignees.remove(e);}
     public void addActivity(Activity activity){ activities.add(activity); }
 
     public boolean userHaveAccessesToProject() {
@@ -118,7 +120,7 @@ public class Project {
     }
 
     public void setName(String name) {
-        for (Project p : ProjectManagementSystem.getProjects()) {
+        for (Project p : scheduleApp.getProjects()) {
             if (!p.getName().equals(this.name)) {
 
             }

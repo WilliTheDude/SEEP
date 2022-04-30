@@ -15,5 +15,4 @@ public class stepDefinitionTest {
     public void everything_is_okay(){
         assertTrue(true);
     }
-
 }

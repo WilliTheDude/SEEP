@@ -3,7 +3,6 @@ package projectManagementSystem;
 import java.util.ArrayList;
 
 public class Employee {
-
     // fields
     private int ID;
     private String name;
@@ -26,9 +25,14 @@ public class Employee {
     }
 
     // General methods
-    public void createProject(){
-        // TODO: 28-04-2022
+    public void createProject(String name, String description){
+        /**
+         * TODO: Add the project to the list in projectManagementSystem.
+         *  * add the user to the project when it's created.
+         */
     }
+
+
 
     public void addProject(Project p){
         projects.add(p);
@@ -55,11 +59,14 @@ public class Employee {
             throw new IllegalArgumentException("main.Project already has a leader");
         }
     }
-
     void addEmployeeToCurrentActivity(Activity a, Employee e){
         a.addAssignee(this, e);
     }
     public void setID(int ID) {this.ID = ID;}
     public void addEmploayeeToProject(Employee employee2, Project project) {
+
+    }
+    public void setAuthorization(boolean authorization) {
+        this.authorization = authorization;
     }
 }

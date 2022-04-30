@@ -45,14 +45,6 @@ Feature: Create a project
     Then the error message "User unauthorised to create a project!" is given
     And the project isn't created
 
-  ## Two projects that are given the same ID
-  Scenario: Two projects that are given the same ID
-    Given that there exist a user
-    And a project with ID "22001"
-    When the user creates a new project with ID "22001"
-    Then the error message "A project with that ID already exists" is given
-    And the project isn't created
-
   ## Two projects that are given the same name
   Scenario: Two projects that are given the same name
     Given that there exist a user
@@ -65,5 +57,5 @@ Feature: Create a project
     Given that there exists a project
     And the project has no project leader
     And that there exist a user
-    When a the user tries to access the project
+    When the user tries to access the project
     Then the user is granted access to the project
