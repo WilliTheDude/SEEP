@@ -9,87 +9,64 @@ import io.cucumber.java.en.When;
 import java.util.ArrayList;
 
 // Imports of classes
-import org.junit.Ignore;
+import static org.junit.Assert.*;
 import projectManagementSystem.*;
 
 public class AddProjectLeaderToProjectSteps {
 
     //fields
-    //private ProjectHolder projectHolder;
+    private EmployeeHolder employee; //[0] is user 1, [1] is user 2
     private ProjectHolder project;
-    //private EmployeeHolder employeeHolder;
-    private EmployeeHolder toBeProjectLeader;
-    private EmployeeHolder partOfProject;
+    private ProjectManagementSystem projectManagementSystem;
 
     // Constructor
-    public AddProjectLeaderToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder){
-        //this.projectHolder = projectHolder;
+    public AddProjectLeaderToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder, ProjectManagementSystem projectManagementSystem){
         this.project = projectHolder;
-        //this.employeeHolder = employeeHolder;
-        toBeProjectLeader = employeeHolder;
+        this.project = projectHolder;
+        this.projectManagementSystem = projectManagementSystem;
     }
 
-    @Ignore
     @Given("that there exists a project")
     public void that_there_exists_a_project() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        projectManagementSystem.addProjectToList(new Project("project1", "This is a project"));
+        project.setProject(projectManagementSystem.getProjectWithName("project1"));
     }
 
-    @Ignore
     @Given("the project has no project leader")
     public void the_project_has_no_project_leader() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        project.getProject().setProjectLeader(null);
     }
 
-    @Ignore
     @Given("user named {string} is part of the project")
-    public void user_named_is_part_of_the_project(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_named_is_part_of_the_project(String user) {
+        employee.setEmployee(projectManagementSystem.getEmployeeWithName(user));
+        project.getProject().getAssignees().add(employee.getEmployee());
     }
 
-    @Ignore
     @When("{string} assigns {string} as project leader")
-    public void assigns_as_project_leader(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void assigns_as_project_leader(String user1, String user2) {
+        employee.getEmployeeWithName(user1).setProjectLeader(project.getProject(), employee.getEmployeeWithName(user2));
     }
 
-    @Ignore
     @Then("{string} is project leader of the project")
-    public void is_project_leader_of_the_project(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void is_project_leader_of_the_project(String projectLeader) {
+        assertEquals(project.getProject().getProjectLeader().getName(), projectLeader);
     }
 
-    @Ignore
     @Given("user named {string} isn't part of the project")
-    public void user_named_isn_t_part_of_the_project(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void user_named_isn_t_part_of_the_project(String user) {
+        project.getProject().getAssignees().remove(employee.getEmployeeWithName(user));
     }
 
-    @Ignore
     @Then("{string} isn't project leader of the project")
-    public void isn_t_project_leader_of_the_project(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void isn_t_project_leader_of_the_project(String projectLeader) {
+        assertNotEquals(project.getProject().getProjectLeader().getName(),projectLeader);
     }
 
-    @Ignore
     @Given("the project has a project leader")
     public void the_project_has_a_project_leader() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        project.getProject().setProjectLeader(new Employee("bo",42,"male"));
     }
 
-    @Ignore
-    @When("{string} correctly assigns {string} as project leader")
-    public void correctly_assigns_as_project_leader(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
 }

@@ -30,6 +30,20 @@ public class EmployeeHolder {
         }
     }
 
+    public ArrayList<Employee> getEmployees() {
+        return employees;
+    }
+
+    public Employee getEmployeeWithName(String name){
+        Employee setE = null;
+        for (Employee e : employees) {
+            if(e.getName().equals(name)){
+                setE = e;
+            }
+        }
+        return setE;
+    }
+
     // Getters
     public Employee getEmployee(){
         if (employee == null){
