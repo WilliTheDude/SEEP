@@ -8,12 +8,10 @@ public class ActivityHolder {
     // TODO: Find ud af hvordan denne skal oprettes
 
     // Fields
-    private ProjectManagementSystem scheduleApp;
     private Activity activity;
 
     // Constructor
     public ActivityHolder(ProjectManagementSystem scheduleApp){
-        this.scheduleApp = scheduleApp;
     }
 
     // General functions

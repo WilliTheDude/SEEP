@@ -5,22 +5,22 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class ProjectManagementSystem {
-    private ArrayList<Project> projects = new ArrayList<Project>();
-    private ArrayList<Employee> employees = new ArrayList<Employee>();
-    private int projectCounter = 0;
-    private Calendar cal = Calendar.getInstance();
-    private Scanner scanner = new Scanner(System.in);;
+    static private ArrayList<Project> projects = new ArrayList<Project>();
+    static private ArrayList<Employee> employees = new ArrayList<Employee>();
+    static private int projectCounter = 0;
+    static private Calendar cal = Calendar.getInstance();
+    static private Scanner scanner = new Scanner(System.in);;
 
     public static void main(String[] args) {
         System.out.println("test");
     }
 
-    public ArrayList<Project> getProjects(){
+    static public ArrayList<Project> getProjects(){
         return projects;
     }
-    public ArrayList<Employee> getEmployees() {return employees;}
+    static public ArrayList<Employee> getEmployees() {return employees;}
 
-    public Project getProjectWithName(String projectName){
+    static public Project getProjectWithName(String projectName){
         Project returnProject = null;
         for (Project project: projects) {
             if(project.getName().equals(projectName)){
@@ -30,7 +30,7 @@ public class ProjectManagementSystem {
         return returnProject;
     }
 
-    public Employee getEmployeeWithName(String employeeName){
+    static public Employee getEmployeeWithName(String employeeName){
         Employee returnEmployee = null;
         for (Employee employee: employees) {
             if (employee.getName().equals(employeeName)){
@@ -41,5 +41,13 @@ public class ProjectManagementSystem {
     }
 
     // adds the project to the list.
-    public void addProjectToList(Project project) { projects.add(project); }
+    static public void addProjectToList(Project project) { projects.add(project); }
+    static public void addEmployeeToList(Employee employee) {employees.add(employee);}
+
+    public static void clearLists(){
+        projects.clear();
+        employees.clear();
+        projectCounter = 0;
+    }
+
 }

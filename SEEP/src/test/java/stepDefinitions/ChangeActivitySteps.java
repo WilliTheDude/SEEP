@@ -20,18 +20,15 @@ public class ChangeActivitySteps {
     private ProjectHolder project;
     private EmployeeHolder employee;
     private ActivityHolder activity;
-    private ProjectManagementSystem projectManagementSystem;
 
     // Constructor
-    public ChangeActivitySteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder, ActivityHolder activityHolder,
-                               ProjectManagementSystem projectManagementSystem){
+    public ChangeActivitySteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder, ActivityHolder activityHolder){
         //this.projectHolder = projectHolder;
         this.project=projectHolder;
         //this.employeeHolder = employeeHolder;
         this.employee = employeeHolder;
         //this.activityHolder = activityHolder;
         this.activity = activityHolder;
-        this.projectManagementSystem = projectManagementSystem;
         //this.employees = employees;
     }
     @Given("actor sets the name of the activity to a valid name")
@@ -80,7 +77,7 @@ public class ChangeActivitySteps {
 
     @Given("{string} has an activity with name {string}")
     public void hasAnActivityWithName(String projectName, String activityName) {
-        project.setProject(projectManagementSystem.getProjectWithName(projectName));
+        project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
         project.getProject().setCreatingActivity(true);
         project.getProject().setTempName(activityName);
         project.getProject().setCreatingActivity(false);

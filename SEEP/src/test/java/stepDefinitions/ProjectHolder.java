@@ -7,11 +7,10 @@ import projectManagementSystem.*;
 
 public class ProjectHolder {
     private Project project;
-    private ProjectManagementSystem scheduleApp;
 
     // Constructor
-    public ProjectHolder (ProjectManagementSystem scheduleApp){
-        //this.scheduleApp = scheduleApp;
+    public ProjectHolder (){
+
     }
 
     // Function for getting and instantiating the project

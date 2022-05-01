@@ -13,14 +13,13 @@ public class Project {
     private String tempName;
     private String tempDesc;
     private boolean statusShown;
-    private ProjectManagementSystem projectManagementSystem;
 
     // Constructor
     public Project(String name, String description) {
         ID = 0; // noget
         this.name = name;
         this.description = description;
-        projectManagementSystem.addProjectToList(this);
+        ProjectManagementSystem.addProjectToList(this);
     }
 
     public Project(){}
@@ -120,7 +119,7 @@ public class Project {
     }
 
     public void setName(String name) {
-        for (Project p : projectManagementSystem.getProjects()) {
+        for (Project p : ProjectManagementSystem.getProjects()) {
             if (!p.getName().equals(this.name)) {
 
             }

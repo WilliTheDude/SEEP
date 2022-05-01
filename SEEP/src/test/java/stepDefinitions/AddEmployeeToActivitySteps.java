@@ -15,23 +15,21 @@ public class AddEmployeeToActivitySteps {
 
     // Fields
     private EmployeeHolder employee;
-    private EmployeeHolder employee2;
     private ProjectHolder project;
     private ActivityHolder activity;
-    private ProjectManagementSystem projectManagementSystem;
     private ErrorMessageHolder errorMessageHolder;
 
     // Constructor
-    public AddEmployeeToActivitySteps(EmployeeHolder employeeHolder, ProjectHolder projectHolder, ActivityHolder activityHolder,
-                                      ProjectManagementSystem projectManagementSystem, ErrorMessageHolder errorMessageHolder){
+    public AddEmployeeToActivitySteps(EmployeeHolder employeeHolder, ProjectHolder projectHolder, ActivityHolder activityHolder, ErrorMessageHolder errorMessageHolder){
         //this.employeeHolder = employeeHolder;
         this.employee = employeeHolder;
         //this.projectHolder = projectHolder;
         this.project = projectHolder;
         this.activity = activityHolder;
-        this.projectManagementSystem = projectManagementSystem;
         this.errorMessageHolder = errorMessageHolder;
     }
+
+
 
     @Given("that there exists a project with name {string}")
     public void that_there_exists_a_project_with_name(String projectName) {
@@ -40,7 +38,7 @@ public class AddEmployeeToActivitySteps {
 
     @Given("that there exists an activity with name {string} in project {string}")
     public void that_there_exists_an_activity_with_name_in_project(String activityName, String projectName) {
-        project.setProject(projectManagementSystem.getProjectWithName(projectName));
+        project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
         activity.setActivity(new Activity(activityName,"string", project.getProject()));
         project.getProject().addActivity(activity.getActivity());
     }
@@ -52,32 +50,28 @@ public class AddEmployeeToActivitySteps {
 
     @Given("{string} is logged in")
     public void is_logged_in(String employeeName) {
-        employee.setEmployee(projectManagementSystem.getEmployeeWithName(employeeName));
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(employeeName));
         employee.getEmployee().setLoggedIn(true);
     }
 
     @Given("{string} is part of project {string}")
     public void is_part_of_project(String user, String projectName) {
-        project.setProject(projectManagementSystem.getProjectWithName(projectName));
-        employee.setEmployee(project.getProject().getEmployeeWithName(user));
+        project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         project.getProject().getAssignees().add(employee.getEmployee());
     }
 
     @Given("{string} is part of activity {string}")
     public void is_part_of_activity(String user, String activityName ) {
-        employee.setEmployee(activity.getActivity().getEmployeeWithName(user));
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         project.getProject().getActivitiesWithName(activityName).addAssignee(employee.getEmployee());
         activity.getActivity().getAssignees().add(employee.getEmployee());
     }
 
     @When("{string} adds {string} to activity {string}")
     public void adds_to_activity(String projectLeader, String user, String activityName) {
-        employee.setEmployee(projectManagementSystem.getEmployeeWithName(projectLeader));
-        employee2.setEmployee(projectManagementSystem.getEmployeeWithName(user));
         activity.setActivity(project.getProject().getActivitiesWithName(activityName));
-
-        // TODO: change this to only one employee
-        activity.getActivity().addAssignee(employee.getEmployee(), employee2.getEmployee());
+        activity.getActivity().addAssignee(employee.getEmployeeWithName(projectLeader), employee.getEmployeeWithName(user));
     }
 
     @Then("{string} is assigned to activity {string}")
@@ -88,19 +82,19 @@ public class AddEmployeeToActivitySteps {
 
     @Given("{string} is not part of project {string}")
     public void is_not_part_of_project(String user, String projectName) {
-        employee.setEmployee(projectManagementSystem.getEmployeeWithName(user));
-        projectManagementSystem.getProjectWithName(projectName).removeAssignee(employee.getEmployee());
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
+        ProjectManagementSystem.getProjectWithName(projectName).removeAssignee(employee.getEmployee());
     }
 
     @Given("{string} is not part of activity {string}")
     public void is_not_part_of_activity(String user, String activityName) {
-        employee.setEmployee(projectManagementSystem.getEmployeeWithName(user));
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         project.getProject().getActivityWithName(activityName).removeAssignee(employee.getEmployee());
     }
 
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String errorMessage) {
-        assertTrue(errorMessageHolder.getErrorMessage().equals(errorMessage));
+        assertEquals(errorMessageHolder.getErrorMessage(), errorMessage);
     }
 
 }
