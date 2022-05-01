@@ -5,10 +5,11 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class ProjectManagementSystem {
+
     private static ArrayList<Project> projects = new ArrayList<Project>();
     private static ArrayList<Employee> employees = new ArrayList<Employee>();
-    private int projectCounter = 0;
-    private Calendar cal = Calendar.getInstance();
+    private static int projectCounter = 0;
+    private static Calendar cal = Calendar.getInstance();
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<String> options = new ArrayList<>();
     private static Employee loggedInEmployee;
@@ -78,10 +79,10 @@ public class ProjectManagementSystem {
         }
     }
 
-    public ArrayList<Project> getProjects(){
+    static public ArrayList<Project> getProjects(){
         return projects;
     }
-    public ArrayList<Employee> getEmployees() {return employees;}
+    static public ArrayList<Employee> getEmployees() {return employees;}
 
     public static Project getProjectWithName(String projectName){
         Project returnProject = null;
@@ -104,5 +105,13 @@ public class ProjectManagementSystem {
     }
 
     // adds the project to the list.
-    public void addProjectToList(Project project) { projects.add(project); }
+    static public void addProjectToList(Project project) { projects.add(project); }
+    static public void addEmployeeToList(Employee employee) {employees.add(employee);}
+
+    public static void clearLists(){
+        projects.clear();
+        employees.clear();
+        projectCounter = 0;
+    }
+
 }

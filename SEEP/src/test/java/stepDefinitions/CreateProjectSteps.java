@@ -18,15 +18,13 @@ public class CreateProjectSteps {
     private ProjectHolder project;
     //private EmployeeHolder employeeHolder;
     private EmployeeHolder employee;
-    private ProjectManagementSystem projectManagementSystem;
 
     // Constructor
-    public CreateProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder, ProjectManagementSystem projectManagementSystem) {
+    public CreateProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder) {
         //this.projectHolder = projectHolder;
         this.project = projectHolder;
         //this.employeeHolder = employeeHolder;
         this.employee = employeeHolder;
-        this.projectManagementSystem = projectManagementSystem;
     }
 
     @Given("the user has ID {int}")
@@ -37,12 +35,12 @@ public class CreateProjectSteps {
     @When("the user creates a new project with name {string}")
     public void the_user_creates_a_new_project_with_name(String projectName) {
         employee.getEmployee().createProject(projectName, "This is a project");
-        project.setProject(projectManagementSystem.getProjectWithName(projectName));
+        project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
     }
 
     @Then("the project is created")
     public void the_project_is_created() {
-        assertTrue(projectManagementSystem.getProjects().contains(project.getProject()));
+        assertTrue(ProjectManagementSystem.getProjects().contains(project.getProject()));
     }
 
     @When("the user creates a project with description {string}")
@@ -52,13 +50,13 @@ public class CreateProjectSteps {
 
     @Then("the project isn't created")
     public void the_project_isn_t_created() {
-        assertFalse(projectManagementSystem.getProjects().contains(project.getProject()));
+        assertFalse(ProjectManagementSystem.getProjects().contains(project.getProject()));
     }
 
     @When("the user creates a valid project")
     public void the_user_creates_a_valid_project() {
         employee.getEmployee().createProject("project1", "This is a project");
-        project.setProject(projectManagementSystem.getProjectWithName("project1"));
+        project.setProject(ProjectManagementSystem.getProjectWithName("project1"));
     }
 
     @Then("the creating user is a part of the project")

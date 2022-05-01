@@ -13,8 +13,8 @@ public class EmployeeHolder {
     private ArrayList<Employee> employees = new ArrayList<>();
 
     // Constructor
-    public EmployeeHolder(ProjectManagementSystem scheduleApp){
-        this.scheduleApp = scheduleApp;
+    public EmployeeHolder(){
+
     }
 
     // Setter
@@ -24,9 +24,8 @@ public class EmployeeHolder {
     }
 
     public void setEmployee(Employee e){
-        employee = e;
-        if (!employees.contains(employee)){
-            employees.add(employee);
+        if (!employees.contains(e)){
+            employees.add(e);
         }
     }
 
