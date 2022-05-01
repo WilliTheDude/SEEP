@@ -12,46 +12,37 @@ Feature: Budgeting time for activities
   project manager has an overview of the time the project is going to take.
   Actor: Project manager
 
-  Scenario: Adding time to an activity
-    Given there exist a project manager
-    And a project with activities
-    When the project leader select an activity
-    And budget time for the chosen activity
-    Then the time is budgeted for the activity
-    And the activity is updated
-    And the time is added to the total time.
+  Scenario: Budget time for an activity
+    Given the project has a project leader
+    And there exist an activity
+    When the project leader budgets time for the activity
+    Then the activity time is updated
+    And the time is added to the totale time
 
   Scenario: Change budget time for an activity
-    Given there exist a project manager
+    Given the project has a project leader
     And an activity with budgeted time
-    When the project manager chooses the activity
-    And changes the budget time
-    Then the time is budgeted for the activity
-    And the project is updated
-    And the time is added to the total time
+    When the project leader changes the budget time for the activty
+    Then The activity time is updated
+    And the time is added to the total time.
 
   Scenario: Delete budget time
-    Given there exist a project manager
-    And an activity with budget time
-    When the project manager deletes the budget time
-    Then the time is deleted
-    And the activity is updated
+    Given the project has a project leader
+    And an activity with budgeted
+    When the project leader deletes the budgeted time
+    Then the activity time is updated
     And the time is added to the total time
 
   Scenario: Get total budget time
-    Given there exist a project manager
-    And a project with activities with budget time
-    When the project leader checks the total time
-    Then he gets the total time
+    Given the project has a project leader
+    And activities with budgeted time
+    When the budget leader checks the total time
+    Then the the total time is received
 
   Scenario: Can an employee budget time
-    Given there exist an employee
-    And a project with activities
-    When the employee tries to budget time
-    Then the error message "only the project manager can budget time" is given
-    And the times isn't budget
-    And the project isn't updated
-
-
-    ##TODO: when deleting an activity, then the budget time is deleted as well
-    #TODO: Can you change time on a closed activity
+    Given that there exist a user
+    And there exist an activity
+    When the user tires to budget time for the activity
+    Then the error message "only the project manager can budget time for an activity" is given
+    And the activity isn't updated
+    And the time isn't added to the total time
