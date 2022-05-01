@@ -21,9 +21,7 @@ public class AddEmployeeToActivitySteps {
 
     // Constructor
     public AddEmployeeToActivitySteps(EmployeeHolder employeeHolder, ProjectHolder projectHolder, ActivityHolder activityHolder, ErrorMessageHolder errorMessageHolder){
-        //this.employeeHolder = employeeHolder;
         this.employee = employeeHolder;
-        //this.projectHolder = projectHolder;
         this.project = projectHolder;
         this.activity = activityHolder;
         this.errorMessageHolder = errorMessageHolder;

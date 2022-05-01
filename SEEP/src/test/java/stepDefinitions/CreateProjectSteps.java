@@ -14,16 +14,12 @@ import static org.junit.Assert.*;
 
 public class CreateProjectSteps {
     // Field
-    //private ProjectHolder projectHolder;
     private ProjectHolder project;
-    //private EmployeeHolder employeeHolder;
     private EmployeeHolder employee;
 
     // Constructor
     public CreateProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder) {
-        //this.projectHolder = projectHolder;
         this.project = projectHolder;
-        //this.employeeHolder = employeeHolder;
         this.employee = employeeHolder;
     }
 
