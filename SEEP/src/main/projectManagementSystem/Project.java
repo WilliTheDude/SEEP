@@ -1,17 +1,19 @@
 package projectManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Project {
-    private int ID;  // Tænkte at denne skulle være en int for at gøre det nemmer for os selv
-    private String name;
-    private String description;
-    private Employee projectLeader;
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
     private ArrayList<Activity> activities = new ArrayList<Activity>();
-    private boolean creatingActivity = false;
+    private int ID;
+    private String name;
+    private String description;
     private String tempName;
     private String tempDesc;
+    private double totalBudgetedTime;
+    private Employee projectLeader;
+    private boolean creatingActivity = false;
     private boolean statusShown;
 
     // Constructor
@@ -20,6 +22,7 @@ public class Project {
         this.name = name;
         this.description = description;
         ProjectManagementSystem.addProjectToList(this);
+        totalBudgetedTime = 0;
     }
 
     public Project(){}
@@ -28,13 +31,19 @@ public class Project {
         return statusShown;
     }
 
-    // General methods
-    public void createActivity(){
-        while (creatingActivity) {
-            // Venter på at få variable og confirm trykkes på - confirm ændrer creatingActivity til false.
-        }
 
-        // TODO: Tjek at ting er korrekte.
+    // General methods
+    public void createActivity(Employee e){
+        // TODO: Få input
+        // TODO: Tjek at inputs er korrekte.
+
+        if (this.getActivitiesWithName(tempName)!=null){
+            throw new IllegalArgumentException("This name is already used, please enter another");
+        }else if (tempName == ""){
+            throw new IllegalArgumentException("Please enter a name");
+        }else if (projectLeader!=e){
+            throw new IllegalArgumentException("You do not have authority to create activitieson this project");
+        }
 
         Activity activity = new Activity(tempName, tempDesc, this);
         activities.add(activity);
@@ -48,7 +57,6 @@ public class Project {
     }
     public void removeAssignee(Employee e) {assignees.remove(e);}
     public void addActivity(Activity activity){ activities.add(activity); }
-
     public boolean userHaveAccessesToProject() {
         /**
          * TODO:
@@ -57,6 +65,8 @@ public class Project {
          */
         return true;
     }
+    public void updateTotalBudgetedTime(double time){totalBudgetedTime = time;}
+
 
     // Getter
     public Activity getActivityWithName(String name){
@@ -68,7 +78,6 @@ public class Project {
         }
         return returnActivity;
     }
-
     public String getTempDesc(){return tempDesc;}
     public String getTempName(){return tempName;}
     public ArrayList<Activity> getActivities(){
@@ -89,7 +98,6 @@ public class Project {
     public Employee getProjectLeader() {
         return projectLeader;
     }
-
     public Activity getActivitiesWithName(String activityName){
         Activity returnActivity = null;
         for (Activity activity: activities) {
@@ -99,7 +107,6 @@ public class Project {
         }
         return returnActivity;
     }
-
     public Employee getEmployeeWithName(String name){
         Employee returnEmployee = null;
         for (Employee employee: assignees) {
@@ -109,6 +116,7 @@ public class Project {
         }
         return returnEmployee;
     }
+    public double getTotalBudgetedTime(){return totalBudgetedTime;}
 
 
     // Setter
@@ -121,7 +129,7 @@ public class Project {
     public void setProjectLeader(Employee projectLeader) {
         this.projectLeader = projectLeader;
 
-    }
+    } //only for tests
 
     public void setName(String name) {
         for (Project p : ProjectManagementSystem.getProjects()) {
@@ -130,8 +138,6 @@ public class Project {
             }
         }
     }
-
-
     public void showStatus(Employee employee){
 
     }
