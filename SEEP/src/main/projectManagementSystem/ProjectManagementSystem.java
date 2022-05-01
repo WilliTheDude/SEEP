@@ -23,7 +23,7 @@ public class ProjectManagementSystem {
     static public Project getProjectWithName(String projectName){
         Project returnProject = null;
         for (Project project: projects) {
-            if(project.getName().equals(projectName)){
+            if (project.getName().equals(projectName)) {
                 returnProject = project;
             }
         }

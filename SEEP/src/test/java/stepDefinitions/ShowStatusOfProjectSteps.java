@@ -48,6 +48,6 @@ public class ShowStatusOfProjectSteps {
 
     @Given("{string} is not a project leader on {string}")
     public void is_not_a_project_leader_on(String user, String projectName) {
-        assertEquals(ProjectManagementSystem.getProjectWithName(projectName).getProjectLeader().getName(), user);
+        ProjectManagementSystem.getProjectWithName(projectName).setProjectLeader(null);
     }
 }

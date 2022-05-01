@@ -17,11 +17,13 @@ public class AddProjectLeaderToProjectSteps {
     //fields
     private EmployeeHolder employee; //[0] is user 1, [1] is user 2
     private ProjectHolder project;
+    private ErrorMessageHolder errorMessageHolder;
 
     // Constructor
-    public AddProjectLeaderToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employee){
+    public AddProjectLeaderToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employee, ErrorMessageHolder errorMessageHolder){
         this.employee = employee;
         this.project = projectHolder;
+        this.errorMessageHolder = errorMessageHolder;
     }
 
     @Given("that there exists a project")
@@ -43,7 +45,12 @@ public class AddProjectLeaderToProjectSteps {
 
     @When("{string} assigns {string} as project leader")
     public void assigns_as_project_leader(String user1, String user2) {
-        employee.getEmployeeWithName(user1).setProjectLeader(project.getProject(), employee.getEmployeeWithName(user2));
+        try {
+            employee.getEmployeeWithName(user1).setProjectLeader(project.getProject(), employee.getEmployeeWithName(user2));
+        }catch (Exception e){
+            errorMessageHolder.setErrorMessage(e.getMessage());
+        }
+
     }
 
     @Then("{string} is project leader of the project")

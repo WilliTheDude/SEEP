@@ -18,7 +18,6 @@ public class AddEmployeeToProjectSteps {
     private ProjectHolder project;
     //private EmployeeHolder employeeHolder;
     private EmployeeHolder employee;
-    private EmployeeHolder employee2;
 
     // Constructor
     public AddEmployeeToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder){
@@ -48,11 +47,8 @@ public class AddEmployeeToProjectSteps {
 
     @When("{string} adds {string} to project {string}")
     public void add_to_project(String projectLeader, String user, String projectName){
-        //employee.getEmployee().g  brug liste employees???
-        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(projectLeader));
-        employee2.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
-        employee2.getEmployee().addEmployeeToProject(employee2.getEmployee(),project.getProject());
+        employee.getEmployeeWithName(projectLeader).addEmployeeToProject(employee.getEmployeeWithName(user),project.getProject());
     }
 
     @Then("{string} is added to project {string}")
