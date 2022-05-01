@@ -51,4 +51,3 @@ Feature: Create a project
     And that there exists a project with name "Project1"
     When the user creates a new project with name "Project1"
     Then the error message "A project with that name already exists" is given
-    
