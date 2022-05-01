@@ -23,11 +23,15 @@ public class Activity {
 
     // General functions
     public void changeActivity(){
-        while (changingActivity){
-            // Vent på confirm.
-        }
+        // TODO: Få input
+        // TODO: Tjek at inputs er korrekte.
 
-        // TODO: Tjek at ting er korrekte.
+        // Tjek at variable er korrekte:
+        if (parent.getActivitiesWithName(tempName)!=null && name != tempName){
+            throw new IllegalArgumentException("This name is already used, please enter another");
+        }else if (tempName == ""){
+            throw new IllegalArgumentException("Please enter a name");
+        }
 
         this.name = tempName;
         this.description = tempDesc;
