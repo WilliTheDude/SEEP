@@ -74,17 +74,4 @@ public class CreateProjectSteps {
         employee.getEmployee().setAuthorization(false);
     }
 
-
-    @Ignore
-    @When("the user tries to access the project")
-    public void the_user_tries_to_access_the_project() {
-        throw new io.cucumber.java.PendingException();
-    }
-
-    @Ignore
-    @Then("the user is granted access to the project")
-    public void the_user_is_granted_access_to_the_project() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 }

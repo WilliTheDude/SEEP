@@ -51,11 +51,4 @@ Feature: Create a project
     And that there exists a project with name "Project1"
     When the user creates a new project with name "Project1"
     Then the error message "A project with that name already exists" is given
-
-  ## A project with no PL should be accessible for all users
-  Scenario: A project with no project leader is accessible for all users
-    Given that there exists a project
-    And the project has no project leader
-    And that there exist a user
-    When the user tries to access the project
-    Then the user is granted access to the project
+    
