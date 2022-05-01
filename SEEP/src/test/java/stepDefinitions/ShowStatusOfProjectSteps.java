@@ -13,17 +13,13 @@ import static org.junit.Assert.*;
 
 public class ShowStatusOfProjectSteps {
     // fields
-    //private ProjectHolder projectHolder;
     private ProjectHolder project;
-    //private EmployeeHolder employeeHolder;
     private EmployeeHolder employee;
     private ErrorMessageHolder errorMessage;
 
     // Constructor
     public ShowStatusOfProjectSteps(EmployeeHolder employeeHolder, ProjectHolder projectHolder, ErrorMessageHolder errorMessage){
-        //this.projectHolder = projectHolder;
         this.project = projectHolder;
-        //this.employeeHolder = employeeHolder;
         this.employee = employeeHolder;
         this.errorMessage = errorMessage;
     }
