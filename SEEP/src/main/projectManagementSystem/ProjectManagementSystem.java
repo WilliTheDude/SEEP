@@ -52,10 +52,11 @@ public class ProjectManagementSystem {
 
     public static void run(){
         while (scanner.hasNext()) {
-            String in = scanner.next();
+            String in = scanner.nextLine();
             for (String s:options) {
                 if (in.equals(s)){
                     runCommand(s);
+                    break;
                 }
             }
         }
@@ -65,15 +66,26 @@ public class ProjectManagementSystem {
             case "help" -> help();
             case "close" -> System.exit(0);
             case "log in" -> logIn();
+
         }
     }
     private static void logIn(){
         System.out.println("Write your name:");
         loggedInEmployee = getEmployeeWithName(scanner.next());
+        removeOption("log in");
+        // her skal indsættes options med de ting man kan gøre og der skal laves funktioner til det
     }
 
-    public static void help(){
-        System.out.println("Here are your options. Type the number of the option you choose.");
+    private static void removeOption(String s){
+        for (int i = options.size()-1; i>=0; i--){
+            if (options.get(i).equals(s)){
+                options.remove(i);
+            }
+        }
+    }
+
+    private static void help(){
+        System.out.println("Here are your options. Type the option you choose.");
         for (int i=0; i<options.size(); i++){
             System.out.println(i+1 + ": " + options.get(i));
         }

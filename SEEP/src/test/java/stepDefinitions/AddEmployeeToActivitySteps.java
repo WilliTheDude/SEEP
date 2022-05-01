@@ -77,7 +77,7 @@ public class AddEmployeeToActivitySteps {
     @Then("{string} is assigned to activity {string}")
     public void is_assigned_to_activity(String user, String activityName) {
         employee.setEmployee(project.getProject().getEmployeeWithName(user));
-        assertTrue(project.getProject().getActivitiesWithName(activityName).getAssigness().contains(employee.getEmployee()));
+        assertTrue(project.getProject().getActivitiesWithName(activityName).getAssignees().contains(employee.getEmployee()));
     }
 
     @Given("{string} is not part of project {string}")
