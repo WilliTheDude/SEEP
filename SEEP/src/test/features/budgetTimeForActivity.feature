@@ -16,27 +16,24 @@ Feature: Budgeting time for activities
     Given the project has a project leader
     And there exist an activity
     When the project leader budgets time for the activity
-    Then the activity time is updated
-    And the time is added to the total time
+    Then the time is added to the total time
 
   Scenario: Change budget time for an activity
     Given the project has a project leader
     And an activity with budgeted time
     When the project leader changes the budget time for the activity
-    Then the activity time is updated
-    And the time is added to the total time
+    Then the time is added to the total time
 
   Scenario: Delete budget time
     Given the project has a project leader
-    And an activity with budgeted
+    And an activity with budgeted time
     When the project leader deletes the budgeted time
-    Then the activity time is updated
-    And the time is added to the total time
+    Then the time is added to the total time
 
   Scenario: Get total budget time
     Given the project has a project leader
-    And activities with budgeted time
-    When the budget leader checks the total time
+    And the project has budgeted time
+    When the project leader checks the total time
     Then the the total time is received
 
   Scenario: Can an employee budget time

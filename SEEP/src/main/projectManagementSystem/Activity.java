@@ -5,14 +5,15 @@ import java.util.ArrayList;
 public class Activity {
     private String ID;
     private String description;
-    private int timetracking;
     private String name;
+    private String tempDesc;
+    private String tempName;
+    private double budgetedTime;
+    private boolean changingActivity = false;
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
     private Project parent;
-    private boolean changingActivity = false;
-    private String tempName;
-    private String tempDesc;
 
+    // Constructor
     public Activity(String name, String desc, Project p){
         this.parent = p;
         this.name = name;
@@ -20,6 +21,7 @@ public class Activity {
         this.ID = Integer.toString(parent.getActivities().size());
     }
 
+    // General functions
     public void changeActivity(){
         while (changingActivity){
             // Vent på confirm.
@@ -40,32 +42,31 @@ public class Activity {
         return returnString;
     }
 
-    public ArrayList<Employee> getAssigness() {
-        return assignees;
-    }
-
     public void addAssignee(Employee employee1, Employee employee2){
         assignees.add(employee2);
     }
-
-    // Special for test only
     public void addAssignee(Employee employee) {
         assignees.add(employee);
-    }
-
-
+    } // Special for test only
     public void removeAssignee(Employee employee){
         assignees.remove(employee);
     }
 
-    public String getName(){return name;}
-    public void setName(String n){name = n;}
+    public void budgetTimeForActivity(double time) {
+        /**
+         * TODO:
+         *  * make it budget the time for the activity
+         *  * When the time is budgeted then it updates the activity
+         *  * And then it also updates the total time on the project.
+         */
+    }
 
-    public String getDesc(){return description;}
-    public void setDesc(String d){description = d;}
+    public void deleteBudgetedTimeForActivity() {
+        budgetedTime = 0;
+    }
 
-    public String getID(){return ID;}
 
+    // Getter
     public Employee getEmployeeWithName(String name){
         Employee returnEmployee = null;
         for (Employee employee: assignees) {
@@ -75,15 +76,21 @@ public class Activity {
         }
         return returnEmployee;
     }
+
     public ArrayList<Employee> getAssignees(){
         return assignees;
     }
-
-
+    public String getID(){return ID;}
     public String getTempDesc(){return tempDesc;}
     public String getTempName(){return tempName;}
-    public void setChangingActivity(Boolean b){changingActivity = b;}
+    public String getDesc(){return description;}
+    public String getName(){return name;}
+    public double getBudgetedTime(){return budgetedTime;}
 
+    // Setter
+    public void setChangingActivity(Boolean b){changingActivity = b;}
     public void setTempName(String n){tempName = n;}
     public void setTempDesc(String n){tempDesc = n;}
+    public void setDesc(String d){description = d;}
+    public void setName(String n){name = n;}
 }

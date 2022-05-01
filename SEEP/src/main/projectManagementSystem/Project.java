@@ -3,15 +3,16 @@ package projectManagementSystem;
 import java.util.ArrayList;
 
 public class Project {
-    private int ID;  // Tænkte at denne skulle være en int for at gøre det nemmer for os selv
-    private String name;
-    private String description;
-    private Employee projectLeader;
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
     private ArrayList<Activity> activities = new ArrayList<Activity>();
-    private boolean creatingActivity = false;
+    private int ID;
+    private String name;
+    private String description;
     private String tempName;
     private String tempDesc;
+    private double totalBudgetedTime;
+    private Employee projectLeader;
+    private boolean creatingActivity = false;
     private boolean statusShown;
     private ProjectManagementSystem projectManagementSystem;
 
@@ -21,6 +22,7 @@ public class Project {
         this.name = name;
         this.description = description;
         projectManagementSystem.addProjectToList(this);
+        totalBudgetedTime = 0;
     }
 
     public Project(){}
@@ -42,11 +44,9 @@ public class Project {
         tempName = null;
         tempDesc = null;
     }
-
     public void addAssignee(Employee e) {assignees.add(e);}
     public void removeAssignee(Employee e) {assignees.remove(e);}
     public void addActivity(Activity activity){ activities.add(activity); }
-
     public boolean userHaveAccessesToProject() {
         /**
          * TODO:
@@ -55,6 +55,8 @@ public class Project {
          */
         return true;
     }
+    public void updateTotalBudgetedTime(double time){totalBudgetedTime = time;}
+
 
     // Getter
     public Activity getActivityWithName(String name){
@@ -66,7 +68,6 @@ public class Project {
         }
         return returnActivity;
     }
-
     public String getTempDesc(){return tempDesc;}
     public String getTempName(){return tempName;}
     public ArrayList<Activity> getActivities(){
@@ -87,7 +88,6 @@ public class Project {
     public Employee getProjectLeader() {
         return projectLeader;
     }
-
     public Activity getActivitiesWithName(String activityName){
         Activity returnActivity = null;
         for (Activity activity: activities) {
@@ -97,7 +97,6 @@ public class Project {
         }
         return returnActivity;
     }
-
     public Employee getEmployeeWithName(String name){
         Employee returnEmployee = null;
         for (Employee employee: assignees) {
@@ -107,6 +106,7 @@ public class Project {
         }
         return returnEmployee;
     }
+    public double getTotalBudgetedTime(){return totalBudgetedTime;}
 
     // Setter
     public void setTempName(String n){tempName = n;}
@@ -118,7 +118,6 @@ public class Project {
     public void setProjectLeader(Employee projectLeader) {
         this.projectLeader = projectLeader;
     }
-
     public void setName(String name) {
         for (Project p : projectManagementSystem.getProjects()) {
             if (!p.getName().equals(this.name)) {
@@ -126,8 +125,6 @@ public class Project {
             }
         }
     }
-
-
     public void showStatus(Employee employee){
 
     }

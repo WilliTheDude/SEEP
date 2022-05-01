@@ -32,8 +32,6 @@ public class Employee {
          */
     }
 
-
-
     public void addProject(Project p){
         projects.add(p);
     }
@@ -48,6 +46,7 @@ public class Employee {
     public ArrayList<Project> getProjects() {
         return projects;
     }
+    public double getTotalProjectTime(Project p) {return p.getTotalBudgetedTime();}
 
     // Setter
     public void setProjectLeader(Project p, Employee e){
@@ -64,7 +63,6 @@ public class Employee {
     }
     public void setID(int ID) {this.ID = ID;}
     public void addEmploayeeToProject(Employee employee2, Project project) {
-
     }
     public void setAuthorization(boolean authorization) {
         this.authorization = authorization;
