@@ -50,7 +50,7 @@ public class Employee {
     }
 
     // Setter
-    private void setProjectLeader(Project p, Employee e){
+    public void setProjectLeader(Project p, Employee e){
         if(p.getProjectLeader() != null){
             p.addAssignee(e);
             p.setProjectLeader(e);

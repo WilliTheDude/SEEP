@@ -32,7 +32,9 @@ Feature: Add project leader to project
   ## Another project leader is assigned to a project with a project leader
   Scenario: Another project leader is assigned to a project that already has one assigned
     Given the project has a project leader
-    When "user1" correctly assigns "user2" as project leader
+    And user named "user1" is part of the project
+    And user named "user2" is part of the project
+    When "user1" assigns "user2" as project leader
     Then the error message "There can only be one project leader" is given
     And "user2" isn't project leader of the project
 
