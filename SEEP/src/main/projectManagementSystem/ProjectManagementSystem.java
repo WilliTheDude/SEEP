@@ -13,9 +13,11 @@ public class ProjectManagementSystem {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<String> options = new ArrayList<>();
     private static Employee loggedInEmployee;
+    private static Project currentProject;
+    private static Activity currentActivity;
+    private static ArrayList<String> path = new ArrayList<>();
 
     public static void main(String[] args) {
-        System.out.println("test");
         setup();
         run();
     }
@@ -23,7 +25,7 @@ public class ProjectManagementSystem {
         options.add("help");
         options.add("close");
         options.add("log in");
-
+        help();
 
         employees.add(new Employee("Allan", 40, "male" ));
         employees.add(new Employee("Bodil", 42, "female" ));
@@ -42,12 +44,14 @@ public class ProjectManagementSystem {
         projects.add(new Project("General","Project with general tasks"));
         projects.add(new Project("StormWeb","Create website with data of storms"));
 
+        getProjectWithName("General").addAssignee(getEmployeeWithName("Allan"));
+        getProjectWithName("General").addAssignee(getEmployeeWithName("Bodil"));
+        getProjectWithName("General").addAssignee(getEmployeeWithName("Carl"));
+
         getProjectWithName("General").setProjectLeader(getEmployeeWithName("Allan"));
         getProjectWithName("StormWeb").setProjectLeader(getEmployeeWithName("Bodil"));
 
-        getProjectWithName("General").addAssignee(getEmployeeWithName("Carl"));
         getProjectWithName("General").addActivity(new Activity("MainActivity", "The main activity", getProjectWithName("General") ));
-
     }
 
     public static void run(){
@@ -66,6 +70,10 @@ public class ProjectManagementSystem {
             case "help" -> help();
             case "close" -> System.exit(0);
             case "log in" -> logIn();
+            case "enter project" -> enterProject();
+            case "enter helper activity" -> enterHelperActivity();
+            case "return to menu" -> returnToMenu();
+
 
         }
     }
@@ -74,6 +82,8 @@ public class ProjectManagementSystem {
         loggedInEmployee = getEmployeeWithName(scanner.next());
         removeOption("log in");
         // her skal indsættes options med de ting man kan gøre og der skal laves funktioner til det
+        returnToMenu();
+
     }
 
     private static void removeOption(String s){
@@ -84,7 +94,48 @@ public class ProjectManagementSystem {
         }
     }
 
+    private static void enterProject(){
+        removeOption("enter project");
+        removeOption("enter helper activity");
+        System.out.println("Choose project:");
+        int i=1;
+        for (Project project: loggedInEmployee.getProjects()) {
+            System.out.println(i + ": " + project.getName());
+            options.add(project.getName());
+        }
+        currentProject = getProjectWithName(scanner.nextLine());
+        path.add(currentProject.getName());
+        for (Project project: loggedInEmployee.getProjects()) {
+            removeOption(project.getName());
+        }
+        options.add("return to menu");
+        printPath();
+    }
+    private static void enterHelperActivity(){
+        removeOption("enter project");
+        removeOption("enter helper activity");
+    }
+    private static void returnToMenu(){
+        currentProject = null;
+        currentActivity = null;
+        options.clear();
+        options.add("help");
+        options.add("close");
+        options.add("enter project");
+        options.add("enter helper activity");
+        path.clear();
+        path.add(loggedInEmployee.getName());
+        printPath();
+    }
+    private static void printPath(){
+        for (String s: path) {
+            System.out.print("\\"+s);
+        }
+        System.out.println();
+    }
+
     private static void help(){
+        printPath();
         System.out.println("Here are your options. Type the option you choose.");
         for (int i=0; i<options.size(); i++){
             System.out.println(i+1 + ": " + options.get(i));

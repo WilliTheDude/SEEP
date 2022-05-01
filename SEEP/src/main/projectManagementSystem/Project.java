@@ -42,7 +42,10 @@ public class Project {
         tempDesc = null;
     }
 
-    public void addAssignee(Employee e) {assignees.add(e);}
+    public void addAssignee(Employee e) {
+        assignees.add(e);
+        e.getProjects().add(this);
+    }
     public void removeAssignee(Employee e) {assignees.remove(e);}
     public void addActivity(Activity activity){ activities.add(activity); }
 
@@ -107,6 +110,7 @@ public class Project {
         return returnEmployee;
     }
 
+
     // Setter
     public void setTempName(String n){tempName = n;}
     public void setTempDesc(String n){tempDesc = n;}
@@ -116,6 +120,7 @@ public class Project {
     }
     public void setProjectLeader(Employee projectLeader) {
         this.projectLeader = projectLeader;
+
     }
 
     public void setName(String name) {
