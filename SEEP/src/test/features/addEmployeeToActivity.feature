@@ -34,3 +34,4 @@ Feature: Add employee to an activity
     And "user2" is part of project "project1"
     When "user1" adds "user2" to activity "activity1"
     Then "user2" is assigned to activity "activity1"
+

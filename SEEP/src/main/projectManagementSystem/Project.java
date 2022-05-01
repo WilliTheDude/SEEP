@@ -14,14 +14,13 @@ public class Project {
     private Employee projectLeader;
     private boolean creatingActivity = false;
     private boolean statusShown;
-    private ProjectManagementSystem projectManagementSystem;
 
     // Constructor
     public Project(String name, String description) {
         ID = 0; // noget
         this.name = name;
         this.description = description;
-        projectManagementSystem.addProjectToList(this);
+        ProjectManagementSystem.addProjectToList(this);
         totalBudgetedTime = 0;
     }
 
@@ -119,7 +118,7 @@ public class Project {
         this.projectLeader = projectLeader;
     }
     public void setName(String name) {
-        for (Project p : projectManagementSystem.getProjects()) {
+        for (Project p : ProjectManagementSystem.getProjects()) {
             if (!p.getName().equals(this.name)) {
 
             }

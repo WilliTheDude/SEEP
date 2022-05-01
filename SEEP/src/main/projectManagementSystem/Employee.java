@@ -22,6 +22,7 @@ public class Employee {
         this.age = age;
         this.gender = gender;
         authorization = true;
+        ProjectManagementSystem.addEmployeeToList(this);
     }
 
     // General methods
@@ -50,19 +51,21 @@ public class Employee {
 
     // Setter
     public void setProjectLeader(Project p, Employee e){
-        if(p.getProjectLeader() != null){
+        if(p.getProjectLeader() == null){
             p.addAssignee(e);
             p.setProjectLeader(e);
             e.projects.add(p);
         }else{
-            throw new IllegalArgumentException("main.Project already has a leader");
+            throw new IllegalArgumentException(p.getName() + " already has a leader");
         }
     }
     void addEmployeeToCurrentActivity(Activity a, Employee e){
         a.addAssignee(this, e);
     }
     public void setID(int ID) {this.ID = ID;}
-    public void addEmploayeeToProject(Employee employee2, Project project) {
+
+    public void addEmployeeToProject(Employee employee2, Project project) {
+
     }
     public void setAuthorization(boolean authorization) {
         this.authorization = authorization;
