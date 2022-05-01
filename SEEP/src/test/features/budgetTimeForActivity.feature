@@ -17,14 +17,14 @@ Feature: Budgeting time for activities
     And there exist an activity
     When the project leader budgets time for the activity
     Then the activity time is updated
-    And the time is added to the totale time
+    And the time is added to the total time
 
   Scenario: Change budget time for an activity
     Given the project has a project leader
     And an activity with budgeted time
-    When the project leader changes the budget time for the activty
-    Then The activity time is updated
-    And the time is added to the total time.
+    When the project leader changes the budget time for the activity
+    Then the activity time is updated
+    And the time is added to the total time
 
   Scenario: Delete budget time
     Given the project has a project leader
