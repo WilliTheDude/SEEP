@@ -1,6 +1,7 @@
 package projectManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Project {
     private int ID;  // Tænkte at denne skulle være en int for at gøre det nemmer for os selv
@@ -28,13 +29,20 @@ public class Project {
         return statusShown;
     }
 
+
     // General methods
-    public void createActivity(){
-        while (creatingActivity) {
-            // Venter på at få variable og confirm trykkes på - confirm ændrer creatingActivity til false.
+    public void createActivity(Employee e){
+        // TODO: Få input
+        // TODO: Tjek at inputs er korrekte.
+
+        if (this.getActivitiesWithName(tempName)!=null){
+            throw new IllegalArgumentException("This name is already used, please enter another");
+        }else if (tempName == ""){
+            throw new IllegalArgumentException("Please enter a name");
+        }else if (projectLeader!=e){
+            throw new IllegalArgumentException("You do not have authority to create activitieson this project");
         }
 
-        // TODO: Tjek at ting er korrekte.
 
         Activity activity = new Activity(tempName, tempDesc, this);
         activities.add(activity);
@@ -116,7 +124,7 @@ public class Project {
     }
     public void setProjectLeader(Employee projectLeader) {
         this.projectLeader = projectLeader;
-    }
+    } //only for tests
 
     public void setName(String name) {
         for (Project p : ProjectManagementSystem.getProjects()) {

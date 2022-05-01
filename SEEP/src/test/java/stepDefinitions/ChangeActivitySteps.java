@@ -10,53 +10,45 @@ import io.cucumber.java.en.When;
 import java.util.ArrayList;
 
 // Import of the classes
+import static org.junit.Assert.*;
 import projectManagementSystem.*;
 
 public class ChangeActivitySteps {
     // Fields
-    //private ProjectHolder projectHolder;
-    //private EmployeeHolder employeeHolder;
-    //private ActivityHolder activityHolder;
     private ProjectHolder project;
     private EmployeeHolder employee;
     private ActivityHolder activity;
+    private String oldName;
+    private String oldDesc;
 
     // Constructor
     public ChangeActivitySteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder, ActivityHolder activityHolder){
-        //this.projectHolder = projectHolder;
-        this.project=projectHolder;
-        //this.employeeHolder = employeeHolder;
+        this.project = projectHolder;
         this.employee = employeeHolder;
-        //this.activityHolder = activityHolder;
         this.activity = activityHolder;
-        //this.employees = employees;
     }
+
     @Given("actor sets the name of the activity to a valid name")
     public void actor_sets_the_name_of_the_activity_to_a_valid_name() {
         activity.getActivity().setTempName(activity.getActivity().getName());
     }
 
-    @Given("actor sets planned time to a valid time")
-    public void actor_sets_planned_time_to_a_valid_time() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
     @Given("actor sets description")
     public void actor_sets_description() {
-        activity.getActivity().setTempName(activity.getActivity().getDesc());
+        activity.getActivity().setTempDesc(activity.getActivity().getDesc());
     }
 
     @When("actor confirms changes")
     public void actor_confirms_changes() {
+        oldName = activity.getActivity().getName();
+        oldDesc = activity.getActivity().getDesc();
         activity.getActivity().setChangingActivity(false);
     }
 
     @Then("the changes are made")
     public void the_changes_are_made() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-        // TODO: 14-04-2022
+        assertNotSame(oldName, activity.getActivity().getName());
+        assertNotSame(oldDesc, activity.getActivity().getDesc());
     }
 
     @Given("actor sets the name of the activity to an invalid name that is already used")
@@ -69,11 +61,6 @@ public class ChangeActivitySteps {
         project.getProject().setTempName("");
     }
 
-    @Given("actor sets planned time to an invalid time with start time later than end time")
-    public void actor_sets_planned_time_to_an_invalid_time_with_start_time_later_than_end_time() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
 
     @Given("{string} has an activity with name {string}")
     public void hasAnActivityWithName(String projectName, String activityName) {

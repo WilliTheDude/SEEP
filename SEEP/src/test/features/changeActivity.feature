@@ -9,7 +9,6 @@ Feature: Change info of activity
 
   Scenario: The employee chooses to change the information of an activity on a project they are assigned to
     Given actor sets the name of the activity to a valid name
-    And actor sets planned time to a valid time
     And actor sets description
     When actor confirms changes
     Then the changes are made
@@ -24,7 +23,3 @@ Feature: Change info of activity
     When actor confirms changes
     Then the error message "Please enter a name" is given
 
-  Scenario: The employee changes the planned time to have an end date before the start date
-    Given actor sets planned time to an invalid time with start time later than end time
-    When actor confirms changes
-    Then the error message "The entered times are not valid, please enter valid times" is given
