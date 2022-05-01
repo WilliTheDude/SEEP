@@ -17,19 +17,16 @@ public class BudgetTimeForActivitySteps {
     ActivityHolder activity;
     EmployeeHolder employee;
     ProjectHolder project;
-    ProjectManagementSystem projectManagementSystem;
     ErrorMessageHolder errorMessageHolder;
     double oldTime;
     double totalTime;
     Employee pl;
 
     // Constructor
-    public BudgetTimeForActivitySteps(ActivityHolder activity, EmployeeHolder employee, ProjectHolder project,
-                                      ProjectManagementSystem projectManagementSystem, ErrorMessageHolder errorMessageHolder) {
+    public BudgetTimeForActivitySteps(ActivityHolder activity, EmployeeHolder employee, ProjectHolder project, ErrorMessageHolder errorMessageHolder) {
         this.activity = activity;
         this.employee = employee;
         this.project = project;
-        this.projectManagementSystem = projectManagementSystem;
         this.errorMessageHolder = errorMessageHolder;
     }
 
