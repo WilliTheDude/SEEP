@@ -99,7 +99,7 @@ public class ProjectManagementSystem {
     public static Project getProjectWithName(String projectName){
         Project returnProject = null;
         for (Project project: projects) {
-            if(project.getName().equals(projectName)){
+            if (project.getName().equals(projectName)) {
                 returnProject = project;
             }
         }

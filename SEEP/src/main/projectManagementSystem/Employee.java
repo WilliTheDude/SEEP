@@ -52,13 +52,12 @@ public class Employee {
 
     // Setter
     public void setProjectLeader(Project p, Employee e){
-        if(p.getProjectLeader() != null){
+        if(p.getProjectLeader() == null){
             p.addAssignee(e);
             p.setProjectLeader(e);
             e.projects.add(p);
-            ProjectManagementSystem.addEmployeeToList(this);
         }else{
-            throw new IllegalArgumentException("main.Project already has a leader");
+            throw new IllegalArgumentException(p.getName() + " already has a leader");
         }
     }
     void addEmployeeToCurrentActivity(Activity a, Employee e){
