@@ -45,7 +45,6 @@ public class Project {
             throw new IllegalArgumentException("You do not have authority to create activitieson this project");
         }
 
-
         Activity activity = new Activity(tempName, tempDesc, this);
         activities.add(activity);
         tempName = null;
