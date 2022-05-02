@@ -1,0 +1,21 @@
+# intelij
+.idea/
+*.iml
+*.iws
+
+## git
+.git
+
+## Maven
+log/
+target/
+/target/
+
+## Ellicpse
+.classpath
+.project
+.settings/
+.metadata
+
+## Mac
+.DS_Store
