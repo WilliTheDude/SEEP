@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="setup.RunCucumberTest" time="0.516" tests="30" errors="0" skipped="0" failures="24">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="setup.RunCucumberTest" time="0.974" tests="30" errors="0" skipped="0" failures="21">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="DK"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\Tores\AppData\Local\Temp\surefire14182681117106085574\surefirebooter1151305902486638589.jar C:\Users\Tores\AppData\Local\Temp\surefire14182681117106085574 2022-05-01T15-58-33_711-jvmRun1 surefire575957509602203099tmp surefire_05595317052554968096tmp"/>
+    <property name="sun.java.command" value="C:\Users\Tores\AppData\Local\Temp\surefire6785365028897062581\surefirebooter12348322522775358620.jar C:\Users\Tores\AppData\Local\Temp\surefire6785365028897062581 2022-05-02T13-35-51_077-jvmRun1 surefire13418044676313325279tmp surefire_01265142758763031695tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\GitHub\SEEP\SEEP\target\test-classes;C:\GitHub\SEEP\SEEP\target\classes;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-java\7.2.3\cucumber-java-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-core\7.2.3\cucumber-core-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-gherkin\7.2.3\cucumber-gherkin-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-gherkin-messages\7.2.3\cucumber-gherkin-messages-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\messages\17.1.1\messages-17.1.1.jar;C:\Users\Tores\.m2\repository\io\cucumber\tag-expressions\4.1.0\tag-expressions-4.1.0.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-expressions\15.0.1\cucumber-expressions-15.0.1.jar;C:\Users\Tores\.m2\repository\io\cucumber\datatable\7.2.3\datatable-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-plugin\7.2.3\cucumber-plugin-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\docstring\7.2.3\docstring-7.2.3.jar;C:\Users\Tores\.m2\repository\io\cucumber\html-formatter\17.0.0\html-formatter-17.0.0.jar;C:\Users\Tores\.m2\repository\io\cucumber\ci-environment\8.1.0\ci-environment-8.1.0.jar;C:\Users\Tores\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-junit\7.2.3\cucumber-junit-7.2.3.jar;C:\Users\Tores\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\Tores\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Tores\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.2\junit-jupiter-api-5.8.2.jar;C:\Users\Tores\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Tores\.m2\repository\org\junit\platform\junit-platform-commons\1.8.2\junit-platform-commons-1.8.2.jar;C:\Users\Tores\.m2\repository\io\cucumber\cucumber-picocontainer\7.2.3\cucumber-picocontainer-7.2.3.jar;C:\Users\Tores\.m2\repository\org\picocontainer\picocontainer\2.15\picocontainer-2.15.jar;C:\Users\Tores\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.2\junit-jupiter-engine-5.8.2.jar;C:\Users\Tores\.m2\repository\org\junit\platform\junit-platform-engine\1.8.2\junit-platform-engine-1.8.2.jar;C:\Users\Tores\.m2\repository\org\junit\vintage\junit-vintage-engine\5.8.2\junit-vintage-engine-5.8.2.jar;C:\Users\Tores\.m2\repository\org\junit\platform\junit-platform-runner\1.8.2\junit-platform-runner-1.8.2.jar;C:\Users\Tores\.m2\repository\org\junit\platform\junit-platform-launcher\1.8.2\junit-platform-launcher-1.8.2.jar;C:\Users\Tores\.m2\repository\org\junit\platform\junit-platform-suite-api\1.8.2\junit-platform-suite-api-1.8.2.jar;C:\Users\Tores\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.8.2\junit-platform-suite-commons-1.8.2.jar;C:\Users\Tores\.m2\repository\org\mockito\mockito-core\4.3.1\mockito-core-4.3.1.jar;C:\Users\Tores\.m2\repository\net\bytebuddy\byte-buddy\1.12.7\byte-buddy-1.12.7.jar;C:\Users\Tores\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.7\byte-buddy-agent-1.12.7.jar;C:\Users\Tores\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\Tores\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Tores\AppData\Local\Temp\surefire14182681117106085574\surefirebooter1151305902486638589.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Tores\AppData\Local\Temp\surefire6785365028897062581\surefirebooter12348322522775358620.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.2+8-LTS-86"/>
@@ -59,105 +59,96 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="An employee from this project and this activity adds another employee from this project to this activity" classname="setup.RunCucumberTest" time="0.126"/>
-  <testcase name="The other employee is not assigned to this project" classname="setup.RunCucumberTest" time="0.031"/>
-  <testcase name="The employee is not assigned to this activity" classname="setup.RunCucumberTest" time="0.032">
+  <testcase name="An employee from this project and this activity adds another employee from this project to this activity" classname="setup.RunCucumberTest" time="0.363"/>
+  <testcase name="The other employee is not assigned to this project" classname="setup.RunCucumberTest" time="0.052">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+</failure>
+  </testcase>
+  <testcase name="The employee is not assigned to this activity" classname="setup.RunCucumberTest" time="0.031">
     <failure message="expected:&lt;[]&gt; but was:&lt;[you have no permission to add others to this activity]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[you have no permission to add others to this activity]>
 ]]></failure>
   </testcase>
-  <testcase name="The employee is not assigned to this project" classname="setup.RunCucumberTest" time="0"/>
-  <testcase name="project leader adds employee to project" classname="setup.RunCucumberTest" time="0.015">
-    <failure type="java.lang.AssertionError">java.lang.AssertionError
-</failure>
-  </testcase>
-  <testcase name="project leader isn&apos;t leader of project" classname="setup.RunCucumberTest" time="0.016">
-    <failure message="expected:&lt;[]&gt; but was:&lt;[user isn&apos;t project leader of chosen project]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[user isn't project leader of chosen project]>
-]]></failure>
-  </testcase>
-  <testcase name="add user2 as project leader" classname="setup.RunCucumberTest" time="0"/>
-  <testcase name="user1 isn&apos;t part of project" classname="setup.RunCucumberTest" time="0.016">
-    <failure message="Values should be different. Actual: user2" type="java.lang.AssertionError">java.lang.AssertionError: Values should be different. Actual: user2
-</failure>
-  </testcase>
-  <testcase name="user2 isn&apos;t part of project" classname="setup.RunCucumberTest" time="0.019"/>
-  <testcase name="Another project leader is assigned to a project that already has one assigned" classname="setup.RunCucumberTest" time="0">
-    <failure message="expected:&lt;[project1 already has a] leader&gt; but was:&lt;[There can only be one project] leader&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[project1 already has a] leader> but was:<[There can only be one project] leader>
-]]></failure>
-  </testcase>
-  <testcase name="Budget time for an activity" classname="setup.RunCucumberTest" time="0.012">
+  <testcase name="The employee is not assigned to this project" classname="setup.RunCucumberTest" time="0.023"/>
+  <testcase name="project leader adds employee to project" classname="setup.RunCucumberTest" time="0.021"/>
+  <testcase name="project leader isn&apos;t leader of project" classname="setup.RunCucumberTest" time="0.018"/>
+  <testcase name="add user2 as project leader" classname="setup.RunCucumberTest" time="0.03"/>
+  <testcase name="user1 isn&apos;t part of project" classname="setup.RunCucumberTest" time="0.013"/>
+  <testcase name="user2 isn&apos;t part of project" classname="setup.RunCucumberTest" time="0.015"/>
+  <testcase name="Another project leader is assigned to a project that already has one assigned" classname="setup.RunCucumberTest" time="0.013"/>
+  <testcase name="Budget time for an activity" classname="setup.RunCucumberTest" time="0.009">
     <failure message="Values should be different. Actual: 0.0" type="java.lang.AssertionError">java.lang.AssertionError: Values should be different. Actual: 0.0
 </failure>
   </testcase>
-  <testcase name="Change budget time for an activity" classname="setup.RunCucumberTest" time="0">
+  <testcase name="Change budget time for an activity" classname="setup.RunCucumberTest" time="0.011">
     <failure message="Values should be different. Actual: 0.0" type="java.lang.AssertionError">java.lang.AssertionError: Values should be different. Actual: 0.0
 </failure>
   </testcase>
-  <testcase name="Delete budget time" classname="setup.RunCucumberTest" time="0.016">
+  <testcase name="Delete budget time" classname="setup.RunCucumberTest" time="0.01">
     <failure message="Values should be different. Actual: 0.0" type="java.lang.AssertionError">java.lang.AssertionError: Values should be different. Actual: 0.0
 </failure>
   </testcase>
-  <testcase name="Get total budget time" classname="setup.RunCucumberTest" time="0">
+  <testcase name="Get total budget time" classname="setup.RunCucumberTest" time="0.012">
     <failure message="Use assertEquals(expected, actual, delta) to compare floating-point numbers" type="java.lang.AssertionError">java.lang.AssertionError: Use assertEquals(expected, actual, delta) to compare floating-point numbers
 </failure>
   </testcase>
-  <testcase name="Can an employee budget time" classname="setup.RunCucumberTest" time="0">
+  <testcase name="Can an employee budget time" classname="setup.RunCucumberTest" time="0.012">
     <failure message="expected:&lt;[]&gt; but was:&lt;[only the project manager can budget time for an activity]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[only the project manager can budget time for an activity]>
 ]]></failure>
   </testcase>
-  <testcase name="The employee chooses to change the information of an activity on a project they are assigned to" classname="setup.RunCucumberTest" time="0.015">
+  <testcase name="The employee chooses to change the information of an activity on a project they are assigned to" classname="setup.RunCucumberTest" time="0.018">
     <failure message="expected not same" type="java.lang.AssertionError">java.lang.AssertionError: expected not same
 </failure>
   </testcase>
-  <testcase name="The employee changes the name to a name that is already the name of an existing activity" classname="setup.RunCucumberTest" time="0">
+  <testcase name="The employee changes the name to a name that is already the name of an existing activity" classname="setup.RunCucumberTest" time="0.014">
     <failure message="expected:&lt;[]&gt; but was:&lt;[This name is already used, please enter another]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[This name is already used, please enter another]>
 ]]></failure>
   </testcase>
-  <testcase name="The employee changes the name to blank" classname="setup.RunCucumberTest" time="0.016">
+  <testcase name="The employee changes the name to blank" classname="setup.RunCucumberTest" time="0.013">
     <failure message="expected:&lt;[]&gt; but was:&lt;[Please enter a name]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[Please enter a name]>
 ]]></failure>
   </testcase>
-  <testcase name="The project leader creates an activity with a valid name and no other info" classname="setup.RunCucumberTest" time="0">
+  <testcase name="The project leader creates an activity with a valid name and no other info" classname="setup.RunCucumberTest" time="0.009">
     <failure type="java.lang.AssertionError">java.lang.AssertionError
 </failure>
   </testcase>
-  <testcase name="The project leader creates an activity with a valid name and description" classname="setup.RunCucumberTest" time="0.016">
+  <testcase name="The project leader creates an activity with a valid name and description" classname="setup.RunCucumberTest" time="0.01">
     <failure type="java.lang.AssertionError">java.lang.AssertionError
 </failure>
   </testcase>
-  <testcase name="The project leader creates an activity with an invalid name" classname="setup.RunCucumberTest" time="0">
+  <testcase name="The project leader creates an activity with an invalid name" classname="setup.RunCucumberTest" time="0.009">
     <failure message="expected:&lt;[]&gt; but was:&lt;[This name is already used, please enter another]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[This name is already used, please enter another]>
 ]]></failure>
   </testcase>
-  <testcase name="The project leader creates an activity with a blank name" classname="setup.RunCucumberTest" time="0">
+  <testcase name="The project leader creates an activity with a blank name" classname="setup.RunCucumberTest" time="0.008">
     <failure message="expected:&lt;[]&gt; but was:&lt;[Please enter a name]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[Please enter a name]>
 ]]></failure>
   </testcase>
-  <testcase name="The actor is not project leader on the project they are trying to create an activity on" classname="setup.RunCucumberTest" time="0.015">
+  <testcase name="The actor is not project leader on the project they are trying to create an activity on" classname="setup.RunCucumberTest" time="0.009">
     <failure message="expected:&lt;[]&gt; but was:&lt;[You do not have authority to create activitieson this project]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[You do not have authority to create activitieson this project]>
 ]]></failure>
   </testcase>
-  <testcase name="A user creates a new project" classname="setup.RunCucumberTest" time="0.01"/>
-  <testcase name="A user creates a project only with a description" classname="setup.RunCucumberTest" time="0.006">
+  <testcase name="A user creates a new project" classname="setup.RunCucumberTest" time="0.009"/>
+  <testcase name="A user creates a project only with a description" classname="setup.RunCucumberTest" time="0.009">
     <failure message="expected:&lt;[]&gt; but was:&lt;[The project must have a name!]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[The project must have a name!]>
 ]]></failure>
   </testcase>
-  <testcase name="A project is created and the user is a part of the project" classname="setup.RunCucumberTest" time="0">
+  <testcase name="A project is created and the user is a part of the project" classname="setup.RunCucumberTest" time="0.008">
     <failure type="java.lang.AssertionError">java.lang.AssertionError
 </failure>
   </testcase>
-  <testcase name="A unauthorised user tries to create a project" classname="setup.RunCucumberTest" time="0">
+  <testcase name="A unauthorised user tries to create a project" classname="setup.RunCucumberTest" time="0.009">
     <failure message="expected:&lt;[]&gt; but was:&lt;[User unauthorised to create a project!]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[User unauthorised to create a project!]>
 ]]></failure>
   </testcase>
-  <testcase name="Two projects that are given the same name" classname="setup.RunCucumberTest" time="0.016">
+  <testcase name="Two projects that are given the same name" classname="setup.RunCucumberTest" time="0.007">
     <failure message="expected:&lt;[]&gt; but was:&lt;[A project with that name already exists]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[A project with that name already exists]>
 ]]></failure>
   </testcase>
-  <testcase name="The project leader choose to see status on a project, that they are assigned to" classname="setup.RunCucumberTest" time="0">
+  <testcase name="The project leader choose to see status on a project, that they are assigned to" classname="setup.RunCucumberTest" time="0.012">
     <failure type="java.lang.AssertionError">java.lang.AssertionError
 </failure>
   </testcase>
-  <testcase name="The project leader choose to see status on a project, that they are not assigned to" classname="setup.RunCucumberTest" time="0">
+  <testcase name="The project leader choose to see status on a project, that they are not assigned to" classname="setup.RunCucumberTest" time="0.01">
     <failure message="expected:&lt;[]&gt; but was:&lt;[you are not project leader on this project and can therefore not see status]&gt;" type="org.junit.ComparisonFailure"><![CDATA[org.junit.ComparisonFailure: expected:<[]> but was:<[you are not project leader on this project and can therefore not see status]>
 ]]></failure>
   </testcase>

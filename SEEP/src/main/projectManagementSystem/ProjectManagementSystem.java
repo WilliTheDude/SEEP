@@ -56,13 +56,19 @@ public class ProjectManagementSystem {
 
     public static void run(){
         while (scanner.hasNext()) {
+            boolean correct = false;
             String in = scanner.nextLine();
             for (String s:options) {
                 if (in.equals(s)){
+                    correct = true;
                     runCommand(s);
                     break;
                 }
             }
+            if(!correct){
+                System.out.println(in+" :Command not recognized, see help for available commands");
+            }
+
         }
     }
     private static void runCommand(String s){
@@ -79,11 +85,16 @@ public class ProjectManagementSystem {
     }
     private static void logIn(){
         System.out.println("Write your name:");
-        loggedInEmployee = getEmployeeWithName(scanner.next());
-        removeOption("log in");
-        // her skal indsættes options med de ting man kan gøre og der skal laves funktioner til det
-        returnToMenu();
+        Employee empName = getEmployeeWithName(scanner.nextLine());
 
+        if(empName != null){
+            loggedInEmployee = empName;
+            removeOption("log in");
+            returnToMenu();
+        }else{
+            System.out.println("User doesn't exist");
+            return;
+        }
     }
 
     private static void removeOption(String s){
@@ -109,6 +120,9 @@ public class ProjectManagementSystem {
             removeOption(project.getName());
         }
         options.add("return to menu");
+        if(currentProject.getProjectLeader().equals(loggedInEmployee)){
+            options.add("add employee");
+        }
         printPath();
     }
     private static void enterHelperActivity(){
