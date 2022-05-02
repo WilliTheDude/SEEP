@@ -5,7 +5,6 @@ Feature: Create activity
     And that there exists a user named "user1"
     And "project1" has "user1" as project leader
     And "user1" is logged in
-#    And actor has entered the create activity state for "project1"
 
   Scenario: The project leader creates an activity with a valid name and no other info
     When actor creates activity with name "activity1" and description "This is an activity"
