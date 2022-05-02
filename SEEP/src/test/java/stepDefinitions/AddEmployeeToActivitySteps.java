@@ -92,7 +92,7 @@ public class AddEmployeeToActivitySteps {
 
     @Then("the error message {string} is given")
     public void the_error_message_is_given(String errorMessage) {
-        assertEquals(errorMessageHolder.getErrorMessage(), errorMessage);
+        assertEquals(errorMessage,errorMessageHolder.getErrorMessage());
     }
 
 }

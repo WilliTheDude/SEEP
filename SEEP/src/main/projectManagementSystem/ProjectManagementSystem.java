@@ -16,11 +16,17 @@ public class ProjectManagementSystem {
     private static Project currentProject;
     private static Activity currentActivity;
     private static ArrayList<String> path = new ArrayList<>();
+    private static Calendar calendar = Calendar.getInstance();
 
     public static void main(String[] args) {
+        for(Project p: projects){
+            System.out.println(p.getName() + "  " + p.getID());
+        }
         setup();
         run();
     }
+
+    // UI
     private static void setup(){
         options.add("help");
         options.add("close");
@@ -41,19 +47,18 @@ public class ProjectManagementSystem {
         employees.add(new Employee("Laura", 53, "female" ));
         employees.add(new Employee("Malik", 46, "male" ));
 
-        projects.add(new Project("General","Project with general tasks"));
-        projects.add(new Project("StormWeb","Create website with data of storms"));
+        //projects.add(new Project("General","Project with general tasks"));
+        //projects.add(new Project("StormWeb","Create website with data of storms"));
 
-        getProjectWithName("General").addAssignee(getEmployeeWithName("Allan"));
-        getProjectWithName("General").addAssignee(getEmployeeWithName("Bodil"));
-        getProjectWithName("General").addAssignee(getEmployeeWithName("Carl"));
+        //getProjectWithName("General").addAssignee(getEmployeeWithName("Allan"));
+        //getProjectWithName("General").addAssignee(getEmployeeWithName("Bodil"));
+        //getProjectWithName("General").addAssignee(getEmployeeWithName("Carl"));
 
-        getProjectWithName("General").setProjectLeader(getEmployeeWithName("Allan"));
-        getProjectWithName("StormWeb").setProjectLeader(getEmployeeWithName("Bodil"));
+        //getProjectWithName("General").setProjectLeader(getEmployeeWithName("Allan"));
+        //getProjectWithName("StormWeb").setProjectLeader(getEmployeeWithName("Bodil"));
 
-        getProjectWithName("General").addActivity(new Activity("MainActivity", "The main activity", getProjectWithName("General") ));
+        //getProjectWithName("General").addActivity(new Activity("MainActivity", "The main activity", getProjectWithName("General") ));
     }
-
     public static void run(){
         while (scanner.hasNext()) {
             String in = scanner.nextLine();
@@ -85,7 +90,6 @@ public class ProjectManagementSystem {
         returnToMenu();
 
     }
-
     private static void removeOption(String s){
         for (int i = options.size()-1; i>=0; i--){
             if (options.get(i).equals(s)){
@@ -93,7 +97,6 @@ public class ProjectManagementSystem {
             }
         }
     }
-
     private static void enterProject(){
         removeOption("enter project");
         removeOption("enter helper activity");
@@ -133,7 +136,6 @@ public class ProjectManagementSystem {
         }
         System.out.println();
     }
-
     private static void help(){
         printPath();
         System.out.println("Here are your options. Type the option you choose.");
@@ -142,10 +144,16 @@ public class ProjectManagementSystem {
         }
     }
 
-    static public ArrayList<Project> getProjects(){
+
+    public static void setLoggedInEmployee(Employee loggedInEmployee) {ProjectManagementSystem.loggedInEmployee = loggedInEmployee;}
+
+    // Getters
+    public static ArrayList<Project> getProjects(){
         return projects;
     }
-    static public ArrayList<Employee> getEmployees() {return employees;}
+    public static ArrayList<Employee> getEmployees() {return employees;}
+    public static Employee getLoggedInEmployee() {return loggedInEmployee;}
+    public static Calendar getCalendar() {return calendar;}
 
     public static Project getProjectWithName(String projectName){
         Project returnProject = null;
@@ -175,6 +183,7 @@ public class ProjectManagementSystem {
         projects.clear();
         employees.clear();
         projectCounter = 0;
+        loggedInEmployee = null;
     }
 
 }

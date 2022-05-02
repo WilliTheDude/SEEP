@@ -1,6 +1,7 @@
 package projectManagementSystem;
 
 import java.util.ArrayList;
+import java.util.jar.JarOutputStream;
 
 public class Activity {
     private String ID;
@@ -19,6 +20,7 @@ public class Activity {
         this.name = name;
         this.description = desc;
         this.ID = Integer.toString(parent.getActivities().size());
+        this.budgetedTime = 0;
     }
 
     // General functions
@@ -38,7 +40,6 @@ public class Activity {
         tempName = null;
         tempDesc = null;
     }
-
     public String status(){
         String returnString = "";
         //DO THING TO STRING
@@ -55,18 +56,26 @@ public class Activity {
     public void removeAssignee(Employee employee){
         assignees.remove(employee);
     }
-
     public void budgetTimeForActivity(double time) {
-        /**
-         * TODO:
-         *  * make it budget the time for the activity
-         *  * When the time is budgeted then it updates the activity
-         *  * And then it also updates the total time on the project.
-         */
+        try {
+            if (parent.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) {
+                budgetedTime = time;
+                parent.updateTotalBudgetedTime(budgetedTime);
+            } else {
+                throw new IllegalArgumentException("It's only the project leader that can budget time for activities");
+            }
+        } catch(Exception e) {
+            throw new IllegalArgumentException("It's only the project leader that can budget time for activities");
+        }
     }
-
     public void deleteBudgetedTimeForActivity() {
-        budgetedTime = 0;
+        if(parent.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())){
+            parent.removeTimeFormTotalBudgetTime(budgetedTime); // Removes the current total budgeted time from project total time
+            budgetedTime = 0; // updates the budgeted time on the activity.
+        } else {
+            throw new IllegalArgumentException("It's only the project leader that can delete budgeted time for an " +
+                    "activity");
+        }
     }
 
 

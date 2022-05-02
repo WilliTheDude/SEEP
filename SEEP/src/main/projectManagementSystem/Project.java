@@ -1,12 +1,14 @@
 package projectManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class Project {
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
     private ArrayList<Activity> activities = new ArrayList<Activity>();
     private int ID;
+    private static int projectNum = 1;
     private String name;
     private String description;
     private String tempName;
@@ -15,22 +17,25 @@ public class Project {
     private Employee projectLeader;
     private boolean creatingActivity = false;
     private boolean statusShown;
+    private boolean projectFailed = false;
+
 
     // Constructor
     public Project(String name, String description) {
-        ID = 0; // noget
-        this.name = name;
-        this.description = description;
-        ProjectManagementSystem.addProjectToList(this);
-        totalBudgetedTime = 0;
+        // Only runs the constructor if the project is given a name
+        if (name == null) {
+            throw new IllegalArgumentException("The project must have a name");
+        }
+        else {
+            this.name = name;
+            this.ID = generateID();
+            this.description = description;
+            this.totalBudgetedTime = 0;
+            ProjectManagementSystem.addProjectToList(this);
+        }
     }
 
     public Project(){}
-
-    public boolean getStatusShown() {
-        return statusShown;
-    }
-
 
     // General methods
     public void createActivity(Employee e){
@@ -50,7 +55,6 @@ public class Project {
         tempName = null;
         tempDesc = null;
     }
-
     public void addAssignee(Employee e) {
         assignees.add(e);
         e.getProjects().add(this);
@@ -65,7 +69,19 @@ public class Project {
          */
         return true;
     }
-    public void updateTotalBudgetedTime(double time){totalBudgetedTime = time;}
+    public void updateTotalBudgetedTime(double time){
+        if(this.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())){ totalBudgetedTime += time; }
+        else{ throw new IllegalArgumentException("It's only the project leader there can see the total time of the project"); }
+    }
+    public void removeTimeFormTotalBudgetTime(double time) {totalBudgetedTime -= time;}
+    private int generateID() {
+        if(ProjectManagementSystem.getProjects().size() == 0) return Integer.parseInt((ProjectManagementSystem.getCalendar().get(Calendar.YEAR)+ "").substring(2,4) + (String.format("%03d", Project.projectNum++)));
+        for (Project p : ProjectManagementSystem.getProjects()) {
+            if (this.ID != p.getID()) return Integer.parseInt((ProjectManagementSystem.getCalendar().get(Calendar.YEAR)+ "").substring(2,4) + (String.format("%03d", Project.projectNum++)));
+            else throw new IllegalArgumentException("The ID of two projects may not be the same");
+        }
+        return -1;
+    }
 
 
     // Getter
@@ -80,24 +96,12 @@ public class Project {
     }
     public String getTempDesc(){return tempDesc;}
     public String getTempName(){return tempName;}
-    public ArrayList<Activity> getActivities(){
-        return activities;
-    }
-    public ArrayList<Employee> getAssignees(){
-        return assignees;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getName() {
-        return name;
-    }
-    public int getID() {
-        return ID;
-    }
-    public Employee getProjectLeader() {
-        return projectLeader;
-    }
+    public ArrayList<Activity> getActivities() { return activities;}
+    public ArrayList<Employee> getAssignees(){ return assignees;}
+    public String getDescription() { return description;}
+    public String getName() { return name; }
+    public int getID() { return ID; }
+    public Employee getProjectLeader() { return projectLeader;}
     public Activity getActivitiesWithName(String activityName){
         Activity returnActivity = null;
         for (Activity activity: activities) {
@@ -117,20 +121,20 @@ public class Project {
         return returnEmployee;
     }
     public double getTotalBudgetedTime(){return totalBudgetedTime;}
-
+    public boolean getStatusShown() { return statusShown;}
+    public boolean isProjectFailed() {
+        return projectFailed;
+    }
 
     // Setter
     public void setTempName(String n){tempName = n;}
     public void setTempDesc(String n){tempDesc = n;}
     public void setCreatingActivity(Boolean b){creatingActivity = b;}
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description;}
     public void setProjectLeader(Employee projectLeader) {
         this.projectLeader = projectLeader;
 
     } //only for tests
-
     public void setName(String name) {
         for (Project p : ProjectManagementSystem.getProjects()) {
             if (!p.getName().equals(this.name)) {

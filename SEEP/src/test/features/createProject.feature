@@ -18,16 +18,15 @@ Feature: Create a project
   Scenario: A user creates a new project
     Given that there exists a user named "Bob Bobsen"
     And the user has ID 1
-    When the user creates a new project with name "Project1"
+    When the user creates a new project with name "bobBobsensProject"
     Then the project is created
 
-  ## Creating a project with only a description
   Scenario: A user creates a project only with a description
     Given that there exists a user named "Bob Bobsen"
     And the user has ID 1
     When the user creates a project with description "Hello World!"
-    Then the error message "The project must have a name!" is given
-    And the project isn't created
+    Then the error message "The project must have a name" is given
+
 
   ## Checks if the user becomes a part of the project upon creation
   Scenario: A project is created and the user is a part of the project
@@ -39,15 +38,14 @@ Feature: Create a project
 
   ## Unauthorised user tires to create a project
   Scenario: A unauthorised user tries to create a project
-    Given that there exist a user
+    Given that there exists a user named "Bob Bobsen"
     And the User is unauthorised to create a project
     When the user creates a valid project
-    Then the error message "User unauthorised to create a project!" is given
-    And the project isn't created
+    Then the error message "You are unauthorised to create a project" is given
 
   ## Two projects that are given the same name
   Scenario: Two projects that are given the same name
     Given that there exist a user
     And that there exists a project with name "Project1"
     When the user creates a new project with name "Project1"
-    Then the error message "A project with that name already exists" is given
+    Then the project is created
