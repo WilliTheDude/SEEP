@@ -65,7 +65,9 @@ public class AddProjectLeaderToProjectSteps {
 
     @Then("{string} isn't project leader of the project")
     public void isn_t_project_leader_of_the_project(String projectLeader) {
-        assertNotEquals(project.getProject().getProjectLeader().getName(),projectLeader);
+        if(project.getProject().getProjectLeader() != null) {
+            assertNotEquals(project.getProject().getProjectLeader(), ProjectManagementSystem.getEmployeeWithName(projectLeader));
+        }
     }
 
     @Given("the project has a project leader")

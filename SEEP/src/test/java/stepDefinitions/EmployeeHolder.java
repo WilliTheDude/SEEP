@@ -8,7 +8,6 @@ import projectManagementSystem.*;
 public class EmployeeHolder {
 
     // fields
-    private ProjectManagementSystem scheduleApp;
     private Employee employee;
     private ArrayList<Employee> employees = new ArrayList<>();
 
@@ -24,6 +23,7 @@ public class EmployeeHolder {
     }
 
     public void setEmployee(Employee e){
+        employee = e;
         if (!employees.contains(e)){
             employees.add(e);
         }

@@ -6,10 +6,6 @@
 ## git
 .git
 
-## Maven
-log/
-target/
-/target/
 
 ## Ellicpse
 .classpath
