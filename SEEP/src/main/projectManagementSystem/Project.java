@@ -16,7 +16,7 @@ public class Project {
     private double totalBudgetedTime;
     private Employee projectLeader;
     private boolean creatingActivity = false;
-    private boolean statusShown;
+    private boolean statusShown = false;
 
     // Constructor
     public Project(String name, String description) {
@@ -32,6 +32,10 @@ public class Project {
     public boolean getStatusShown() {
         return statusShown;
     }
+    public void setStatusShown(Boolean b) {
+        statusShown=b;
+    }
+
 
     //Method kun til test
     public void createTestActivity(String name, String desc){
@@ -145,6 +149,12 @@ public class Project {
         }
     }
     public void showStatus(Employee employee){
-
+        if (employee != projectLeader){
+            throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
+        }
+        else {
+            //do the thing
+            setStatusShown(true);
+        }
     }
 }

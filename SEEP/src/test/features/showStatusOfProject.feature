@@ -13,4 +13,4 @@ Feature: Show project status
   Scenario: The project leader choose to see status on a project, that they are not assigned to
     Given "user1" is not a project leader on "project1"
     When "user1" choose to see project status on "project1"
-    Then the error message "you are not project leader on this project and can therefore not see status" is given
+    Then the error message "You are not project leader on this project and can therefore not see status" is given

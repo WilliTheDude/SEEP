@@ -16,8 +16,10 @@ public class ProjectManagementSystem {
     private static Project currentProject;
     private static Activity currentActivity;
     private static ArrayList<String> path = new ArrayList<>();
+    private static Calendar calendar = Calendar.getInstance();
 
     public static void main(String[] args) {
+        System.out.println(calendar.get(Calendar.YEAR));
         setup();
         run();
     }
@@ -56,13 +58,19 @@ public class ProjectManagementSystem {
 
     public static void run(){
         while (scanner.hasNext()) {
+            boolean correct = false;
             String in = scanner.nextLine();
             for (String s:options) {
                 if (in.equals(s)){
+                    correct = true;
                     runCommand(s);
                     break;
                 }
             }
+            if(!correct){
+                System.out.println(in+" :Command not recognized, see help for available commands");
+            }
+
         }
     }
     private static void runCommand(String s){
@@ -73,17 +81,25 @@ public class ProjectManagementSystem {
             case "enter project" -> enterProject();
             case "enter helper activity" -> enterHelperActivity();
             case "return to menu" -> returnToMenu();
+            case "create activity" -> createActivity();
+            case "enter activity" -> enterActivity();
+            case "change activity" -> changeActivity();
 
 
         }
     }
     private static void logIn(){
         System.out.println("Write your name:");
-        loggedInEmployee = getEmployeeWithName(scanner.next());
-        removeOption("log in");
-        // her skal indsættes options med de ting man kan gøre og der skal laves funktioner til det
-        returnToMenu();
+        Employee empName = getEmployeeWithName(scanner.nextLine());
 
+        if(empName != null){
+            loggedInEmployee = empName;
+            removeOption("log in");
+            returnToMenu();
+        }else{
+            System.out.println("User doesn't exist");
+            return;
+        }
     }
 
     private static void removeOption(String s){
@@ -109,18 +125,78 @@ public class ProjectManagementSystem {
             removeOption(project.getName());
         }
         options.add("return to menu");
+        if(currentProject.getProjectLeader().equals(loggedInEmployee)){
+            options.add("add employee");
+        }
+        options.add("create activity");
+        options.add("enter activity");
+
         printPath();
     }
     private static void enterHelperActivity(){
         removeOption("enter project");
         removeOption("enter helper activity");
+
     }
+    private static void createActivity(){
+        removeOption("create activity");
+        removeOption("enter activity");
+        System.out.println("Write name of new activity");
+        String name = scanner.nextLine();
+        currentProject.setTempName(name);
+        System.out.println("Write description of activity " + name);
+        String desc = scanner.nextLine();
+        currentProject.setTempDesc(desc);
+        currentProject.createActivity(loggedInEmployee);
+        currentActivity = currentProject.getActivityWithName(name);
+        path.add(currentActivity.getName());
+        printPath();
+    }
+    private static void enterActivity(){
+        removeOption("enter activity");
+        removeOption("create activity");
+
+        System.out.println("Choose activity:");
+        int i=1;
+        for (Activity activity: currentProject.getActivities()) {
+            System.out.println(i + ": " + activity.getName());
+            options.add(activity.getName());
+        }
+        currentActivity = currentProject.getActivityWithName(scanner.nextLine());
+        path.add(currentActivity.getName());
+        for (Activity activity: currentProject.getActivities()) {
+            removeOption(activity.getName());
+        }
+        options.add("change activity");
+
+        printPath();
+    }
+    private static void changeActivity(){
+        removeOption("change activity");
+        System.out.println("Write new name of new activity");
+        currentActivity.setTempName(scanner.nextLine());
+        System.out.println("Write new description of activity " + currentActivity.getName());
+        currentActivity.setTempDesc(scanner.nextLine());
+        currentActivity.changeActivity();
+
+    }
+
     private static void returnToMenu(){
+        if (currentProject != null) {
+            currentProject.setStatusShown(false);
+            currentProject.setTempName(null);
+            currentProject.setTempDesc(null);
+        }
+        if (currentActivity != null) {
+            currentActivity.setTempName(null);
+            currentActivity.setTempDesc(null);
+        }
         currentProject = null;
         currentActivity = null;
         options.clear();
         options.add("help");
         options.add("close");
+        options.add("return to menu");
         options.add("enter project");
         options.add("enter helper activity");
         path.clear();
