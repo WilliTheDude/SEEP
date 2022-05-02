@@ -1,5 +1,7 @@
 package projectManagementSystem;
 
+import io.cucumber.java.sk.A;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -74,6 +76,8 @@ public class ProjectManagementSystem {
             case "enter helper activity" -> enterHelperActivity();
             case "return to menu" -> returnToMenu();
             case "create activity" -> createActivity();
+            case "enter activity" -> enterActivity();
+            case "change activity" -> changeActivity();
 
 
         }
@@ -98,8 +102,6 @@ public class ProjectManagementSystem {
     private static void enterProject(){
         removeOption("enter project");
         removeOption("enter helper activity");
-        removeOption("create activity");
-
         System.out.println("Choose project:");
         int i=1;
         for (Project project: loggedInEmployee.getProjects()) {
@@ -111,36 +113,79 @@ public class ProjectManagementSystem {
         for (Project project: loggedInEmployee.getProjects()) {
             removeOption(project.getName());
         }
-        options.add("return to menu");
         options.add("create activity");
+        options.add("enter activity");
 
         printPath();
     }
     private static void enterHelperActivity(){
         removeOption("enter project");
         removeOption("enter helper activity");
-        removeOption("create activity");
 
     }
     private static void createActivity(){
-        removeOption("enter project");
-        removeOption("enter helper activity");
+        removeOption("create activity");
+        removeOption("enter activity");
+        System.out.println("Write name of new activity");
+        String name = scanner.nextLine();
+        currentProject.setTempName(name);
+        System.out.println("Write description of activity " + name);
+        String desc = scanner.nextLine();
+        currentProject.setTempDesc(desc);
+        currentProject.createActivity(loggedInEmployee);
+        currentActivity = currentProject.getActivityWithName(name);
+        path.add(currentActivity.getName());
+        printPath();
+    }
+    private static void enterActivity(){
+        removeOption("enter activity");
         removeOption("create activity");
 
+        System.out.println("Choose activity:");
+        int i=1;
+        for (Activity activity: currentProject.getActivities()) {
+            System.out.println(i + ": " + activity.getName());
+            options.add(activity.getName());
+        }
+        currentActivity = currentProject.getActivityWithName(scanner.nextLine());
+        path.add(currentActivity.getName());
+        for (Activity activity: currentProject.getActivities()) {
+            removeOption(activity.getName());
+        }
+        options.add("change activity");
+
+        printPath();
     }
+    private static void changeActivity(){
+        removeOption("change activity");
+        System.out.println("Write new name of new activity");
+        currentActivity.setTempName(scanner.nextLine());
+        System.out.println("Write new description of activity " + currentActivity.getName());
+        currentActivity.setTempDesc(scanner.nextLine());
+        currentActivity.changeActivity();
+
+    }
+
     private static void returnToMenu(){
+        if (currentProject != null) {
+            currentProject.setStatusShown(false);
+            currentProject.setTempName(null);
+            currentProject.setTempDesc(null);
+        }
+        if (currentActivity != null) {
+            currentActivity.setTempName(null);
+            currentActivity.setTempDesc(null);
+        }
         currentProject = null;
         currentActivity = null;
         options.clear();
         options.add("help");
         options.add("close");
+        options.add("return to menu");
         options.add("enter project");
         options.add("enter helper activity");
         path.clear();
         path.add(loggedInEmployee.getName());
-        for (Project p: projects) {
-            p.setStatusShown(false);
-        }
         printPath();
     }
     private static void printPath(){
