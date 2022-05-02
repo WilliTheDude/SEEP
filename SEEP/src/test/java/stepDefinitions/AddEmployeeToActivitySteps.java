@@ -63,18 +63,23 @@ public class AddEmployeeToActivitySteps {
     public void is_part_of_activity(String user, String activityName ) {
         employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         project.getProject().getActivitiesWithName(activityName).addAssignee(employee.getEmployee());
-        activity.getActivity().getAssignees().add(employee.getEmployee());
     }
 
     @When("{string} adds {string} to activity {string}")
-    public void adds_to_activity(String projectLeader, String user, String activityName) {
+    public void adds_to_activity(String user1, String user2, String activityName) {
         activity.setActivity(project.getProject().getActivitiesWithName(activityName));
-        activity.getActivity().addAssignee(employee.getEmployeeWithName(projectLeader), employee.getEmployeeWithName(user));
+        try {
+            activity.getActivity().addAssignee(employee.getEmployeeWithName(user1), employee.getEmployeeWithName(user2));
+        }
+        catch (Exception e){
+            errorMessageHolder.setErrorMessage(e.getMessage());
+        }
+
     }
 
     @Then("{string} is assigned to activity {string}")
     public void is_assigned_to_activity(String user, String activityName) {
-        employee.setEmployee(project.getProject().getEmployeeWithName(user));
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         assertTrue(project.getProject().getActivitiesWithName(activityName).getAssignees().contains(employee.getEmployee()));
     }
 

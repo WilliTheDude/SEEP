@@ -1,5 +1,7 @@
 package projectManagementSystem;
 
+import io.cucumber.java.ca.Cal;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -16,8 +18,10 @@ public class ProjectManagementSystem {
     private static Project currentProject;
     private static Activity currentActivity;
     private static ArrayList<String> path = new ArrayList<>();
+    private static Calendar calendar = Calendar.getInstance();
 
     public static void main(String[] args) {
+        System.out.println(calendar.get(Calendar.YEAR));
         setup();
         run();
     }
@@ -79,6 +83,7 @@ public class ProjectManagementSystem {
             case "enter project" -> enterProject();
             case "enter helper activity" -> enterHelperActivity();
             case "return to menu" -> returnToMenu();
+            case "create activity" -> createActivity();
 
 
         }
@@ -108,6 +113,8 @@ public class ProjectManagementSystem {
     private static void enterProject(){
         removeOption("enter project");
         removeOption("enter helper activity");
+        removeOption("create activity");
+
         System.out.println("Choose project:");
         int i=1;
         for (Project project: loggedInEmployee.getProjects()) {
@@ -128,6 +135,14 @@ public class ProjectManagementSystem {
     private static void enterHelperActivity(){
         removeOption("enter project");
         removeOption("enter helper activity");
+        removeOption("create activity");
+
+    }
+    private static void createActivity(){
+        removeOption("enter project");
+        removeOption("enter helper activity");
+        removeOption("create activity");
+
     }
     private static void returnToMenu(){
         currentProject = null;
@@ -139,6 +154,9 @@ public class ProjectManagementSystem {
         options.add("enter helper activity");
         path.clear();
         path.add(loggedInEmployee.getName());
+        for (Project p: projects) {
+            p.setStatusShown(false);
+        }
         printPath();
     }
     private static void printPath(){

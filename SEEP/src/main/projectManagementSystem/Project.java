@@ -1,5 +1,7 @@
 package projectManagementSystem;
 
+import io.cucumber.java.bs.A;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +16,7 @@ public class Project {
     private double totalBudgetedTime;
     private Employee projectLeader;
     private boolean creatingActivity = false;
-    private boolean statusShown;
+    private boolean statusShown = false;
 
     // Constructor
     public Project(String name, String description) {
@@ -30,6 +32,15 @@ public class Project {
     public boolean getStatusShown() {
         return statusShown;
     }
+    public void setStatusShown(Boolean b) {
+        statusShown=b;
+    }
+
+
+    //Method kun til test
+    public void createTestActivity(String name, String desc){
+        this.activities.add(new Activity(name,desc,this));
+    }
 
 
     // General methods
@@ -37,12 +48,12 @@ public class Project {
         // TODO: Få input
         // TODO: Tjek at inputs er korrekte.
 
-        if (this.getActivitiesWithName(tempName)!=null){
+        if (this.getActivityWithName(tempName)!=null){
             throw new IllegalArgumentException("This name is already used, please enter another");
         }else if (tempName == ""){
             throw new IllegalArgumentException("Please enter a name");
         }else if (projectLeader!=e){
-            throw new IllegalArgumentException("You do not have authority to create activitieson this project");
+            throw new IllegalArgumentException("You do not have authority to create activities on this project");
         }
 
         Activity activity = new Activity(tempName, tempDesc, this);
@@ -139,6 +150,12 @@ public class Project {
         }
     }
     public void showStatus(Employee employee){
-
+        if (employee != projectLeader){
+            throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
+        }
+        else {
+            //do the ting
+            setStatusShown(true);
+        }
     }
 }

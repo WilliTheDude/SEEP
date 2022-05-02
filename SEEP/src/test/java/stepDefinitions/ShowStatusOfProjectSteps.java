@@ -27,11 +27,11 @@ public class ShowStatusOfProjectSteps {
     @When("{string} choose to see project status on {string}")
     public void choose_to_see_project_status_on(String user, String projectName) {
         project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
-        employee.setEmployee(project.getProject().getEmployeeWithName(user));
+        employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(user));
         try {
             project.getProject().showStatus(employee.getEmployee()); // skal i den funktion sætte en boolean statusShown til true
         }
-        catch (Error e){
+        catch (Exception e){
             errorMessage.setErrorMessage(e.getMessage());
         }
     }
