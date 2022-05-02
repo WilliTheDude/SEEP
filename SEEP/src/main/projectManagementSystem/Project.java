@@ -41,9 +41,7 @@ public class Project {
 
     // General methods
     public void createActivity(Employee e){
-        // TODO: Få input
-        // TODO: Tjek at inputs er korrekte.
-
+        // Check if inputs are viable and employee is project leader.
         if (this.getActivityWithName(tempName)!=null){
             throw new IllegalArgumentException("This name is already used, please enter another");
         }else if (tempName == ""){
@@ -52,6 +50,7 @@ public class Project {
             throw new IllegalArgumentException("You do not have authority to create activities on this project");
         }
 
+        // Create activity and add to activity list.
         Activity activity = new Activity(tempName, tempDesc, this);
         activities.add(activity);
         tempName = null;

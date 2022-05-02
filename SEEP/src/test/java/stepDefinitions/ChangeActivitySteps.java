@@ -42,7 +42,7 @@ public class ChangeActivitySteps {
         project.getProject().createTestActivity(activityName, "");
         activity.setActivity(project.getProject().getActivityWithName(activityName));
     }
-    
+
     @When("actor changes the name of the activity to {string}")
     public void actorChangesTheNameOfTheActivityTo(String name) {
         try{

@@ -32,35 +32,6 @@ public class CreateActivitySteps {
         activity.setActivity(name,"",project.getProject());
         project.getProject().createTestActivity(name, "");
     }
-/*
-    @Given("actor has entered the create activity state for {string}")
-    public void actor_has_entered_the_create_activity_state_for(String string) {
-        project.getProject().setCreatingActivity(true);
-    }
-
- */
-/*
-    @Given("actor sets the name of the activity to {string}")
-    public void actor_sets_the_name_of_the_activity_to_a_valid_name(String name) {
-        project.getProject().setTempName(name);
-    }
-*/
-/*    @Given("actor sets description")
-    public void actor_sets_description() {
-        project.getProject().setTempDesc("This is a test activity.");
-    }
-*/
-/*    @When("actor confirms creation")
-    public void actor_confirms_creation() {
-        try{
-            project.getProject().setCreatingActivity(false);
-            activity.setActivity(project.getProject().getTempName(), project.getProject().getTempDesc(),project.getProject());
-            project.getProject().createActivity(employee.getEmployee());
-        } catch (Exception e){
-            errorMessageHolder.setErrorMessage(e.getMessage());
-        }
-
-    }*/
 
     @Then("the activity is saved to list of activities")
     public void the_activity_is_saved_to_list_of_activities() {
@@ -70,7 +41,6 @@ public class CreateActivitySteps {
         }
         assertTrue(project.getProject().getActivities().contains(activity.getActivity()));
     }
-
 
     @Given("actor is not project leader on this project")
     public void actor_is_not_project_leader_on_this_project() {
