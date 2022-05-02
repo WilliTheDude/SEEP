@@ -48,9 +48,12 @@ public class Activity {
     }
 
     public void addAssignee(Employee employee1, Employee employee2){
-        assignees.add(employee2);
+        if (assignees.contains(employee2)) return;
+        if (assignees.contains(employee1)) assignees.add(employee2);
+        else throw new IllegalArgumentException("You have no permission to add others to this activity");
     }
     public void addAssignee(Employee employee) {
+        if (assignees.contains(employee)) return;
         assignees.add(employee);
     } // Special for test only
     public void removeAssignee(Employee employee){

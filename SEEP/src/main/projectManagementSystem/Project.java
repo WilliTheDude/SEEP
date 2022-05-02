@@ -1,5 +1,7 @@
 package projectManagementSystem;
 
+import io.cucumber.java.bs.A;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
@@ -19,7 +21,6 @@ public class Project {
     private boolean statusShown;
     private boolean projectFailed = false;
 
-
     // Constructor
     public Project(String name, String description) {
         // Only runs the constructor if the project is given a name
@@ -37,19 +38,26 @@ public class Project {
 
     public Project(){}
 
+    public void setStatusShown(Boolean b) { statusShown=b;}
+
+    //Method kun til test
+    public void createTestActivity(String name, String desc){
+        this.activities.add(new Activity(name,desc,this));
+    }
+
+
     // General methods
     public void createActivity(Employee e){
-        // TODO: Få input
-        // TODO: Tjek at inputs er korrekte.
-
-        if (this.getActivitiesWithName(tempName)!=null){
+        // Check if inputs are viable and employee is project leader.
+        if (this.getActivityWithName(tempName)!=null){
             throw new IllegalArgumentException("This name is already used, please enter another");
         }else if (tempName == ""){
             throw new IllegalArgumentException("Please enter a name");
         }else if (projectLeader!=e){
-            throw new IllegalArgumentException("You do not have authority to create activitieson this project");
+            throw new IllegalArgumentException("You do not have authority to create activities on this project");
         }
 
+        // Create activity and add to activity list.
         Activity activity = new Activity(tempName, tempDesc, this);
         activities.add(activity);
         tempName = null;
@@ -143,6 +151,12 @@ public class Project {
         }
     }
     public void showStatus(Employee employee){
-
+        if (employee != projectLeader){
+            throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
+        }
+        else {
+            //do the thing
+            setStatusShown(true);
+        }
     }
 }
