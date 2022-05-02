@@ -154,7 +154,7 @@ public class Project {
             throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
         }
         else {
-            //do the ting
+            //do the thing
             setStatusShown(true);
         }
     }
