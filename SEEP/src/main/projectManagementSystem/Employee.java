@@ -51,12 +51,14 @@ public class Employee {
 
     // Setter
     public void setProjectLeader(Project p, Employee e){
-        if(p.getProjectLeader() == null){
+        if(p.getProjectLeader() == null && p.getAssignees().contains(this)){
             p.addAssignee(e);
             p.setProjectLeader(e);
             e.projects.add(p);
-        }else{
-            throw new IllegalArgumentException(p.getName() + " already has a leader");
+        }else if(p.getProjectLeader() != null){
+            throw new IllegalArgumentException("There can only be one project leader");
+        }else if(!p.getAssignees().contains(this)){
+            throw new IllegalArgumentException("User needs to be part of project to assign project leaders");
         }
     }
     void addEmployeeToCurrentActivity(Activity a, Employee e){
@@ -64,7 +66,16 @@ public class Employee {
     }
     public void setID(int ID) {this.ID = ID;}
 
-    public void addEmployeeToProject(Employee employee2, Project project) {
+    public void addEmployeeToProject(Employee employee2, Project project){
+        try{
+            if(project.getProjectLeader().equals(this)){
+                project.getAssignees().add(employee2);
+            }else{
+                throw new IllegalArgumentException("user isn't project leader of chosen project");
+            }
+        }catch (Exception e){
+            throw new IllegalArgumentException("user isn't project leader of chosen project");
+        }
 
     }
     public void setAuthorization(boolean authorization) {

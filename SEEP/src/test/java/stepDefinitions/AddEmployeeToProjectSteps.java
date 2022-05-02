@@ -16,11 +16,13 @@ public class AddEmployeeToProjectSteps {
     // Fields
     private ProjectHolder project;
     private EmployeeHolder employee;
+    private ErrorMessageHolder errorMessageHolder;
 
     // Constructor
-    public AddEmployeeToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder){
+    public AddEmployeeToProjectSteps(ProjectHolder projectHolder, EmployeeHolder employeeHolder, ErrorMessageHolder errorMessageHolder){
         this.employee = employeeHolder;
         this.project = projectHolder;
+        this.errorMessageHolder = errorMessageHolder;
     }
 
     @After
@@ -44,7 +46,12 @@ public class AddEmployeeToProjectSteps {
     @When("{string} adds {string} to project {string}")
     public void add_to_project(String projectLeader, String user, String projectName){
         project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
-        employee.getEmployeeWithName(projectLeader).addEmployeeToProject(employee.getEmployeeWithName(user),project.getProject());
+        try {
+            employee.getEmployeeWithName(projectLeader).addEmployeeToProject(employee.getEmployeeWithName(user),project.getProject());
+        }catch (Exception e){
+            errorMessageHolder.setErrorMessage(e.getMessage());
+        }
+
     }
 
     @Then("{string} is added to project {string}")
