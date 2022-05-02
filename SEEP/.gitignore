@@ -1,0 +1,17 @@
+# intellij
+.idea/
+*.iml
+*.iws
+
+## git
+.git
+
+
+## Ellicpse
+.classpath
+.project
+.settings/
+.metadata
+
+## Mac
+.DS_Store
