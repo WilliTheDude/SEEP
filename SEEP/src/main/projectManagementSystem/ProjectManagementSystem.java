@@ -73,6 +73,7 @@ public class ProjectManagementSystem {
             case "enter project" -> enterProject();
             case "enter helper activity" -> enterHelperActivity();
             case "return to menu" -> returnToMenu();
+            case "create activity" -> createActivity();
 
 
         }
@@ -97,6 +98,8 @@ public class ProjectManagementSystem {
     private static void enterProject(){
         removeOption("enter project");
         removeOption("enter helper activity");
+        removeOption("create activity");
+
         System.out.println("Choose project:");
         int i=1;
         for (Project project: loggedInEmployee.getProjects()) {
@@ -109,11 +112,21 @@ public class ProjectManagementSystem {
             removeOption(project.getName());
         }
         options.add("return to menu");
+        options.add("create activity");
+
         printPath();
     }
     private static void enterHelperActivity(){
         removeOption("enter project");
         removeOption("enter helper activity");
+        removeOption("create activity");
+
+    }
+    private static void createActivity(){
+        removeOption("enter project");
+        removeOption("enter helper activity");
+        removeOption("create activity");
+
     }
     private static void returnToMenu(){
         currentProject = null;
@@ -125,6 +138,9 @@ public class ProjectManagementSystem {
         options.add("enter helper activity");
         path.clear();
         path.add(loggedInEmployee.getName());
+        for (Project p: projects) {
+            p.setStatusShown(false);
+        }
         printPath();
     }
     private static void printPath(){
