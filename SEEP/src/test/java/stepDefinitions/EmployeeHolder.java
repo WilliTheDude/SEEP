@@ -23,6 +23,7 @@ public class EmployeeHolder {
     }
 
     public void setEmployee(Employee e){
+        employee = e;
         if (!employees.contains(e)){
             employees.add(e);
         }
