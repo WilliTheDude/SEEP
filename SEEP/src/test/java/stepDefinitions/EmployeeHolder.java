@@ -8,7 +8,6 @@ import projectManagementSystem.*;
 public class EmployeeHolder {
 
     // fields
-    private ProjectManagementSystem scheduleApp;
     private Employee employee;
     private ArrayList<Employee> employees = new ArrayList<>();
 
