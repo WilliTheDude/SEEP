@@ -28,14 +28,9 @@ public class ChangeActivitySteps {
         this.activity = activityHolder;
     }
 
-    @Given("actor sets the name of the activity to a valid name")
-    public void actor_sets_the_name_of_the_activity_to_a_valid_name() {
-        activity.getActivity().setTempName(activity.getActivity().getName());
-    }
-
-    @Given("actor sets description")
+    @Given("actor sets new description")
     public void actor_sets_description() {
-        activity.getActivity().setTempDesc(activity.getActivity().getDesc());
+        activity.getActivity().setTempDesc("This is a description.");
     }
 
     @When("actor confirms changes")
@@ -51,17 +46,6 @@ public class ChangeActivitySteps {
         assertNotSame(oldDesc, activity.getActivity().getDesc());
     }
 
-    @Given("actor sets the name of the activity to an invalid name that is already used")
-    public void actor_sets_the_name_of_the_activity_to_an_invalid_name_that_is_already_used() {
-        project.getProject().setTempName("activity1");
-    }
-
-    @Given("actor sets the name of the activity to blank")
-    public void actor_sets_the_name_of_the_activity_to_blank() {
-        project.getProject().setTempName("");
-    }
-
-
     @Given("{string} has an activity with name {string}")
     public void hasAnActivityWithName(String projectName, String activityName) {
         project.setProject(ProjectManagementSystem.getProjectWithName(projectName));
@@ -74,5 +58,10 @@ public class ChangeActivitySteps {
     @Given("actor has entered the info change state of {string}")
     public void actorHasEnteredTheInfoChangeStateOf(String arg0) {
         activity.getActivity().setChangingActivity(true);
+    }
+
+    @Given("actor sets the new name of the activity to {string}")
+    public void actorSetsTheNewNameOfTheActivityTo(String name) {
+        activity.getActivity().setTempName(name);
     }
 }

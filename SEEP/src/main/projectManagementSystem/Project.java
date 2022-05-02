@@ -1,5 +1,7 @@
 package projectManagementSystem;
 
+import io.cucumber.java.bs.A;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,18 +33,23 @@ public class Project {
         return statusShown;
     }
 
+    //Method kun til test
+    public void createTestActivity(String name, String desc){
+        this.activities.add(new Activity(name,desc,this));
+    }
+
 
     // General methods
     public void createActivity(Employee e){
         // TODO: Få input
         // TODO: Tjek at inputs er korrekte.
 
-        if (this.getActivitiesWithName(tempName)!=null){
+        if (this.getActivityWithName(tempName)!=null){
             throw new IllegalArgumentException("This name is already used, please enter another");
         }else if (tempName == ""){
             throw new IllegalArgumentException("Please enter a name");
         }else if (projectLeader!=e){
-            throw new IllegalArgumentException("You do not have authority to create activitieson this project");
+            throw new IllegalArgumentException("You do not have authority to create activities on this project");
         }
 
         Activity activity = new Activity(tempName, tempDesc, this);

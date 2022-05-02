@@ -8,18 +8,18 @@ Feature: Change info of activity
     And actor has entered the info change state of "activity1"
 
   Scenario: The employee chooses to change the information of an activity on a project they are assigned to
-    Given actor sets the name of the activity to a valid name
-    And actor sets description
+    Given actor sets the new name of the activity to "activity2"
+    And actor sets new description
     When actor confirms changes
     Then the changes are made
 
   Scenario: The employee changes the name to a name that is already the name of an existing activity
-    Given actor sets the name of the activity to an invalid name that is already used
+    Given actor sets the new name of the activity to "activity1"
     When actor confirms changes
     Then the error message "This name is already used, please enter another" is given
 
   Scenario: The employee changes the name to blank
-    Given actor sets the name of the activity to blank
+    Given actor sets the new name of the activity to ""
     When actor confirms changes
     Then the error message "Please enter a name" is given
 
