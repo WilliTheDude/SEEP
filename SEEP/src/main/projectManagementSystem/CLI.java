@@ -3,6 +3,7 @@ package projectManagementSystem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// Embla
 public class CLI {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<String> options = new ArrayList<>();
@@ -34,11 +35,13 @@ public class CLI {
         ProjectManagementSystem.addProjectToList(new Project("StormWeb","Create website with data of storms"));
 
         ProjectManagementSystem.getProjectWithName("General").addActivity(new Activity("MainActivity", "The main activity", ProjectManagementSystem.getProjectWithName("General") ));
+        ProjectManagementSystem.getProjectWithName("General").addActivity(new Activity("nr2", "den anden", ProjectManagementSystem.getProjectWithName("General") ));
 
         ProjectManagementSystem.getProjectWithName("General").addAssignee(ProjectManagementSystem.getEmployeeWithName("Allan"));
         ProjectManagementSystem.getProjectWithName("General").addAssignee(ProjectManagementSystem.getEmployeeWithName("Bodil"));
         ProjectManagementSystem.getProjectWithName("General").addAssignee(ProjectManagementSystem.getEmployeeWithName("Carl"));
         ProjectManagementSystem.getProjectWithName("General").getActivityWithName("MainActivity").addAssignee(ProjectManagementSystem.getEmployeeWithName("Dagmar"));
+        ProjectManagementSystem.getProjectWithName("General").getActivityWithName("MainActivity").addAssignee(ProjectManagementSystem.getEmployeeWithName("Allan"));
 
 
         ProjectManagementSystem.getProjectWithName("General").setProjectLeader(ProjectManagementSystem.getEmployeeWithName("Allan"));
@@ -72,6 +75,8 @@ public class CLI {
             case "create activity" -> createActivity();
             case "enter activity" -> enterActivity();
             case "change activity" -> changeActivity();
+            case "create project" -> createProject();
+            case "set project leader" -> setProjectLeader();
         }
     }
     private static void logIn(){
@@ -94,26 +99,44 @@ public class CLI {
             }
         }
     }
-    private static void enterProject(){
+    private static void createProject(){
+        removeOption("create project");
         removeOption("enter project");
         removeOption("enter helper activity");
+        System.out.println("Write name of new project");
+        String name = scanner.nextLine();
+        System.out.println("Write description of project " + name);
+        String desc = scanner.nextLine();
+
+        currentProject = ProjectManagementSystem.getLoggedInEmployee().createProject(name, desc);
+        path.add(currentProject.getName());
+        printPath();
+        options.add("set project leader");
+    }
+    private static void enterProject(){
         System.out.println("Choose project:");
         int i=1;
         for (Project project: ProjectManagementSystem.getLoggedInEmployee().getProjects()) {
             System.out.println(i + ": " + project.getName());
-            options.add(project.getName());
+            i++;
         }
-        currentProject = ProjectManagementSystem.getProjectWithName(scanner.nextLine());
+        Project p = ProjectManagementSystem.getProjectWithName(scanner.nextLine());
+        if (!p.getAssignees().contains(ProjectManagementSystem.getLoggedInEmployee())){
+            System.out.println("You are not assigned to this project");
+            return;
+        }
+        removeOption("enter project");
+        removeOption("enter helper activity");
+        currentProject = p;
         path.add(currentProject.getName());
-        for (Project project: ProjectManagementSystem.getLoggedInEmployee().getProjects()) {
-            removeOption(project.getName());
-        }
-        options.add("return to menu");
-        if(currentProject.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())){
+        if(currentProject.getProjectLeader() == ProjectManagementSystem.getLoggedInEmployee()){
             options.add("add employee");
+            options.add("create activity");
         }
-        options.add("create activity");
         options.add("enter activity");
+        if (currentProject.getProjectLeader()==null){
+            options.add("set project leader");
+        }
 
         printPath();
     }
@@ -125,18 +148,13 @@ public class CLI {
         int i=1;
         for (Activity activity: ProjectManagementSystem.getLoggedInEmployee().getActivities()) { // listen er tom... hvorfor???
             System.out.println(i + ": " + activity.getParent().getName() + "\\" + activity.getName());
-            options.add(activity.getName());
+            i++;
         }
 
         currentProject = ProjectManagementSystem.getProjectWithName(scanner.nextLine());
         currentActivity = currentProject.getActivityWithName(scanner.nextLine());
         path.add(currentProject.getName());
         path.add(currentActivity.getName());
-        for (Activity activity: currentProject.getActivities()) {
-            removeOption(activity.getName());
-        }
-        options.add("change activity");
-
         printPath();
 
     }
@@ -155,22 +173,29 @@ public class CLI {
         printPath();
     }
     private static void enterActivity(){
-        removeOption("enter activity");
-        removeOption("create activity");
-
-        System.out.println("Choose activity:");
+        System.out.println("Choose activity: ");
         int i=1;
         for (Activity activity: currentProject.getActivities()) {
-            System.out.println(i + ": " + activity.getName());
-            options.add(activity.getName());
-        }
-        currentActivity = currentProject.getActivityWithName(scanner.nextLine());
-        path.add(currentActivity.getName());
-        for (Activity activity: currentProject.getActivities()) {
-            removeOption(activity.getName());
-        }
-        options.add("change activity");
+            System.out.print(i + ": " + activity.getName());
+            if (activity.getAssignees().contains(ProjectManagementSystem.getLoggedInEmployee())){
+                System.out.print("          ------member");
+            }
+            System.out.println();
+            i++;
 
+        }
+        Activity a = currentProject.getActivityWithName(scanner.nextLine());
+        if (!a.getAssignees().contains(ProjectManagementSystem.getLoggedInEmployee())){
+            System.out.println("You are not assigned to this activity");
+            return;
+        }
+        removeOption("enter activity");
+        removeOption("create activity");
+        currentActivity = a;
+        path.add(currentActivity.getName());
+        if (currentProject.getProjectLeader() == ProjectManagementSystem.getLoggedInEmployee()) {
+            options.add("change activity");
+        }
         printPath();
     }
     private static void changeActivity(){
@@ -180,6 +205,9 @@ public class CLI {
         System.out.println("Write new description of activity " + currentActivity.getName());
         currentActivity.setTempDesc(scanner.nextLine());
         currentActivity.changeActivity();
+
+    }
+    private static void setProjectLeader(){
 
     }
 
@@ -201,6 +229,7 @@ public class CLI {
         options.add("return to menu");
         options.add("enter project");
         options.add("enter helper activity");
+        options.add("create project");
         path.clear();
         path.add(ProjectManagementSystem.getLoggedInEmployee().getName());
         printPath();
