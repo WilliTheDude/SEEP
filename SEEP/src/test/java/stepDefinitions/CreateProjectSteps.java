@@ -55,6 +55,7 @@ public class CreateProjectSteps {
     public void the_user_creates_a_valid_project() {
         try {
             project.setProject(employee.getEmployee().createProject("project1", "This is a project"));
+            project.getProject().setDescription("This is the new description");
         } catch(Exception e) {
             errorMessageHolder.setErrorMessage(e.getMessage());
         }

@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class ProjectManagementSystem {
-
     private static ArrayList<Project> projects = new ArrayList<Project>();
     private static ArrayList<Employee> employees = new ArrayList<Employee>();
     private static int projectCounter = 0;
@@ -85,8 +84,6 @@ public class ProjectManagementSystem {
             case "create activity" -> createActivity();
             case "enter activity" -> enterActivity();
             case "change activity" -> changeActivity();
-
-
         }
     }
     private static void logIn(){

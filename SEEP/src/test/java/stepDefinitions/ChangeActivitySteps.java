@@ -49,6 +49,7 @@ public class ChangeActivitySteps {
             oldName = activity.getActivity().getName();
             oldDesc = activity.getActivity().getDesc();
             activity.getActivity().setTempName(name);
+            activity.getActivity().setTempDesc("This is a description");
             activity.getActivity().changeActivity();
         } catch (Exception e){
             errorMessageHolder.setErrorMessage(e.getMessage());
