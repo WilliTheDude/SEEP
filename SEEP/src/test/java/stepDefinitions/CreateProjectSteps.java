@@ -25,8 +25,8 @@ public class CreateProjectSteps {
         this.errorMessageHolder = errorMessageHolder;
     }
 
-    @Given("the user has ID {int}")
-    public void the_user_has_id(Integer ID) {
+    @Given("the user has ID {string}")
+    public void the_user_has_id(String ID) {
         employee.getEmployee().setID(ID);
     }
 

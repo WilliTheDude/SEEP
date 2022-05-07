@@ -1,6 +1,8 @@
 package projectManagementSystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 
 // Tore
 public class Employee {
@@ -10,12 +12,12 @@ public class Employee {
      * TODO:
      *  * when the program is done see which of the fields we should make local
      */
-    private int ID;
-    private String name;
     private int age;
-    private String gender;
     private boolean authorization;
     private boolean loggedIn = false;
+    private String ID;
+    private String name;
+    private String gender;
     private ArrayList<Project> projects = new ArrayList<Project>();
     private ArrayList<Activity> activities = new ArrayList<Activity>();
 
@@ -24,6 +26,7 @@ public class Employee {
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.ID = generateID(name);
         authorization = true;
         ProjectManagementSystem.addEmployeeToList(this);
     }
@@ -40,6 +43,13 @@ public class Employee {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
+    private String generateID(String name) {
+        String[] nameSceptered = name.toLowerCase().split(" ");
+        int numNames = nameSceptered.length;
+        if (nameSceptered.length >= 3) return "" + nameSceptered[0].charAt(1) + nameSceptered[1].charAt(0) + nameSceptered[numNames].charAt(0);
+        else if (nameSceptered.length == 2) return nameSceptered[0].substring(0,2) + nameSceptered[1].charAt(0);
+        return null;
+    }
 
     //TODO: do we use this method?? ( public void addProject(Project p) { projects.add(p); } )
 
@@ -52,6 +62,7 @@ public class Employee {
     public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
     public ArrayList<Project> getProjects() { return projects; }
     public double getTotalProjectTime(Project p) { return p.getTotalBudgetedTimeForProject();}
+    public ArrayList<Activity> getActivities() { return activities; }
 
     // Setter
     public void setProjectLeader(Project p, Employee e) {
@@ -70,7 +81,7 @@ public class Employee {
             * void addEmployeeToCurrentActivity(Activity a, Employee e) { a.addAssignee(this, e); } )
      */
 
-    public void setID(int ID) { this.ID = ID; }
+    public void setID(String ID) { this.ID = ID; }
     public void addEmployeeToProject(Employee employee2, Project project) {
         try {
             if (project.getProjectLeader().equals(this)) {
@@ -82,11 +93,7 @@ public class Employee {
 
     }
     public void setAuthorization(boolean authorization) { this.authorization = authorization; }
-
     public void addEmployeeToActivity(Activity activity){
         activities.add(activity);
-    }
-    public ArrayList<Activity> getActivities() {
-        return activities;
     }
 }
