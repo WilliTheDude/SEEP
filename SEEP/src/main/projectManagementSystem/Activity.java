@@ -2,14 +2,20 @@ package projectManagementSystem;
 
 import java.util.ArrayList;
 
+/*
+* The function of this class is to store and handle the information of an Activity.
+*
+* Class responsible: Helene
+ */
+
 public class Activity {
+    // Fields
     private final String ID;
     private String description;
     private String name;
     private String tempDesc;
     private String tempName;
     private double budgetedTime;
-    //private boolean changingActivity = false;
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
     private final Project parent;
 
@@ -25,6 +31,15 @@ public class Activity {
     }
 
     // General functions
+
+    /*
+     * changeActivity()
+     *
+     * Checks if the information stored in temporary holders, tempName and tempDesc, is valid.
+     * If they are ok, the name and description of the Activity is changed.
+     *
+     * - Helene
+     */
     public void changeActivity() {
         if (parent.getActivitiesWithName(tempName) != null && name != tempName) {
             throw new IllegalArgumentException("This name is already used, please enter another");
