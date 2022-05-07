@@ -26,12 +26,6 @@ public class AddProjectLeaderToProjectSteps {
         this.errorMessageHolder = errorMessageHolder;
     }
 
-    @Given("that there exists a project")
-    public void that_there_exists_a_project() {
-        ProjectManagementSystem.addProjectToList(new Project("project1", "This is a project"));
-        project.setProject(ProjectManagementSystem.getProjectWithName("project1"));
-    }
-
     @Given("the project has no project leader")
     public void the_project_has_no_project_leader() {
         project.getProject().setProjectLeader(null);

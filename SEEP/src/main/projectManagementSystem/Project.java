@@ -39,6 +39,15 @@ public class Project {
 
 
     // General methods
+
+    /*
+     * createActivity()
+     *
+     * Checks if the information stored in temporary holders, tempName and tempDesc, is valid.
+     * If they are ok and the actor is projectLeader, the Activity is created.
+     *
+     * - Helene
+     */
     public void createActivity(Employee e){
         // Check if inputs are viable and employee is project leader.
         if (this.getActivityWithName(tempName)!=null){
