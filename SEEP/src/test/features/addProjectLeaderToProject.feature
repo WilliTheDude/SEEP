@@ -1,7 +1,7 @@
 Feature: Add project leader to project
 
   Background:
-    Given that there exists a project
+    Given that there exists a project with name "project1"
     And the project has no project leader
     And that there exists a user named "user1"
     And that there exists a user named "user2"

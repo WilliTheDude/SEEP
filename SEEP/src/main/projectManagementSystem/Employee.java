@@ -2,6 +2,7 @@ package projectManagementSystem;
 
 import java.util.ArrayList;
 
+// Tore
 public class Employee {
 
     // Fields
@@ -32,7 +33,8 @@ public class Employee {
         if(!authorization) throw new IllegalArgumentException("You are unauthorised to create a project");
         try {
             Project project = new Project(name, description);
-            project.getAssignees().add(this); // adds the employee to the
+            project.getAssignees().add(this); // adds the employee to the assignees of the project
+            projects.add(project);
             return project;
         } catch(Exception e) {
             throw new IllegalArgumentException(e.getMessage());
@@ -80,4 +82,11 @@ public class Employee {
 
     }
     public void setAuthorization(boolean authorization) { this.authorization = authorization; }
+
+    public void addEmployeeToActivity(Activity activity){
+        activities.add(activity);
+    }
+    public ArrayList<Activity> getActivities() {
+        return activities;
+    }
 }
