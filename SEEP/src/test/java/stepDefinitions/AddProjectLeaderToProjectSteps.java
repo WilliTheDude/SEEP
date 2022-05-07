@@ -73,7 +73,6 @@ public class AddProjectLeaderToProjectSteps {
     @Given("the project has a project leader")
     public void the_project_has_a_project_leader() {
         project.getProject().setProjectLeader(new Employee("project leader",42,"male"));
-        System.out.println(project.getProject().getProjectLeader().getName());
     }
 
 

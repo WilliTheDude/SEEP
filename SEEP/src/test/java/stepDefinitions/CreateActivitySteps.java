@@ -35,10 +35,12 @@ public class CreateActivitySteps {
 
     @Then("the activity is saved to list of activities")
     public void the_activity_is_saved_to_list_of_activities() {
-        for (Activity a: project.getProject().getActivities()){
-            System.out.println(a.getName());
-            System.out.println(activity.getActivity().getName());
-        }
+        /** Debuging?
+           * for (Activity a: project.getProject().getActivities()){
+                System.out.println(a.getName());
+                System.out.println(activity.getActivity().getName());
+            }
+         */
         assertTrue(project.getProject().getActivities().contains(activity.getActivity()));
     }
 
@@ -54,10 +56,8 @@ public class CreateActivitySteps {
         try{
             project.getProject().createActivity(employee.getEmployee());
             activity.setActivity(project.getProject().getActivityWithName(name));
-            System.out.println("Hi");
         } catch (Exception e){
             errorMessageHolder.setErrorMessage(e.getMessage());
-            System.out.println(errorMessageHolder.getErrorMessage());
         }
     }
 }
