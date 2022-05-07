@@ -4,7 +4,6 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
 // Junit imports
 import static org.junit.Assert.*;
 
@@ -12,15 +11,13 @@ import static org.junit.Assert.*;
 import projectManagementSystem.*;
 
 public class BudgetTimeForActivitySteps {
-
-    // Field
-    ActivityHolder activity;
-    EmployeeHolder employee;
-    ProjectHolder project;
-    ErrorMessageHolder errorMessageHolder;
-    double oldTime;
-    double totalTime;
-    Employee pl;
+    // Fields
+    private final ActivityHolder activity;
+    private final EmployeeHolder employee;
+    private final ProjectHolder project;
+    private ErrorMessageHolder errorMessageHolder;
+    private double oldTime;
+    private double totalTime;
 
     // Constructor
     public BudgetTimeForActivitySteps(ActivityHolder activity, EmployeeHolder employee, ProjectHolder project, ErrorMessageHolder errorMessageHolder) {
@@ -30,13 +27,11 @@ public class BudgetTimeForActivitySteps {
         this.errorMessageHolder = errorMessageHolder;
     }
 
-    // Check
     @Given("there exist an activity")
     public void there_exist_an_activity() {
         activity.getActivity();
     }
 
-    // Cehck
     @When("the project leader budgets time for the activity")
     public void the_project_leader_budgets_time_for_the_activity() {
         ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
@@ -50,19 +45,16 @@ public class BudgetTimeForActivitySteps {
         }
     }
 
-    // Check
     @Given("an activity with budgeted time")
     public void an_activity_with_budgeted_time() {
         ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         try {
             activity.getActivity().budgetTimeForActivity(7.4);
-            System.out.println(activity.getActivity().getBudgetedTime());
         } catch(Exception e) {
             errorMessageHolder.setErrorMessage(e.getMessage());
         }
     }
 
-    // Check
     @When("the project leader changes the budget time for the activity")
     public void the_project_leader_changes_the_budget_time_for_the_activity() {
         ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee()); // sets the project leader
@@ -75,20 +67,17 @@ public class BudgetTimeForActivitySteps {
 
     }
 
-    // Check
     @When("the project leader deletes the budgeted time")
     public void the_project_leader_deletes_the_budgeted_time() {
         ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         oldTime = activity.getActivity().getBudgetedTime();
         try {
             activity.getActivity().deleteBudgetedTimeForActivity();
-            System.out.println(oldTime + " " + activity.getActivity().getBudgetedTime());
         } catch(Exception e) {
             errorMessageHolder.setErrorMessage(e.getMessage());
         }
     }
 
-    // Check
     @Then("the time is added to the total time")
     public void the_time_is_added_to_the_total_time() {
         assertNotEquals(oldTime, activity.getActivity().getBudgetedTime());

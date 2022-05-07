@@ -3,14 +3,18 @@ package projectManagementSystem;
 import java.util.ArrayList;
 
 public class Employee {
-    // fields
+
+    // Fields
+    /**
+     * TODO:
+     *  * when the program is done see which of the fields we should make local
+     */
     private int ID;
     private String name;
     private int age;
     private String gender;
     private boolean authorization;
     private boolean loggedIn = false;
-
     private ArrayList<Project> projects = new ArrayList<Project>();
     private ArrayList<Activity> activities = new ArrayList<Activity>();
 
@@ -35,27 +39,17 @@ public class Employee {
         }
     }
 
-    public void addProject(Project p) {
-        projects.add(p);
-    }
+    //TODO: do we use this method?? ( public void addProject(Project p) { projects.add(p); } )
 
     // Getter
     public String getName() { return name; }
-    public int getID() {
-        return ID;
-    }
-    public boolean getAuthorization() {
-        return authorization;
-    }
-    public void setLoggedIn(boolean loggedIn) {
-        this.loggedIn = loggedIn;
-    }
-    public ArrayList<Project> getProjects() {
-        return projects;
-    }
-    public double getTotalProjectTime(Project p) {
-        return p.getTotalBudgetedTime();
-    }
+    /** TODO: do we use these method for anything in the program:
+            * public int getID() { return ID; }
+            * public boolean getAuthorization() { return authorization; }
+     */
+    public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
+    public ArrayList<Project> getProjects() { return projects; }
+    public double getTotalProjectTime(Project p) { return p.getTotalBudgetedTime();}
 
     // Setter
     public void setProjectLeader(Project p, Employee e) {
@@ -69,25 +63,21 @@ public class Employee {
             throw new IllegalArgumentException("User needs to be part of project to assign project leaders");
         }
     }
-    void addEmployeeToCurrentActivity(Activity a, Employee e) {
-        a.addAssignee(this, e);
-    }
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+
+    /** TODO: do we use this method for anything in the program:
+            * void addEmployeeToCurrentActivity(Activity a, Employee e) { a.addAssignee(this, e); } )
+     */
+
+    public void setID(int ID) { this.ID = ID; }
     public void addEmployeeToProject(Employee employee2, Project project) {
         try {
             if (project.getProjectLeader().equals(this)) {
                 project.getAssignees().add(employee2);
-            } else {
-                throw new IllegalArgumentException("user isn't project leader of chosen project");
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("user isn't project leader of chosen project");
         }
 
     }
-    public void setAuthorization(boolean authorization) {
-        this.authorization = authorization;
-    }
+    public void setAuthorization(boolean authorization) { this.authorization = authorization; }
 }
