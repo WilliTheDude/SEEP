@@ -5,6 +5,11 @@ import java.util.ArrayList;
 // Import of classes
 import projectManagementSystem.*;
 
+/*
+ * This class holds all employees used for a test.
+ *
+ * - Helene
+ */
 public class EmployeeHolder {
 
     // fields

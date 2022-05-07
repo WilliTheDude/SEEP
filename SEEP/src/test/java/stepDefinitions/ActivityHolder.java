@@ -3,10 +3,13 @@ package stepDefinitions;
 // Class imports
 import projectManagementSystem.*;
 
-public class ActivityHolder {
-    // smtn. needs to be done to get this to hold an activity, but I am unsure on how it will be connected to a project.
-    // TODO: Find ud af hvordan denne skal oprettes
+/*
+ * This class holds an activity used for tests.
+ *
+ * - Helene
+ */
 
+public class ActivityHolder {
     // Fields
     private Activity activity;
 
