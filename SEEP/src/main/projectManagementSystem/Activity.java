@@ -9,7 +9,6 @@ public class Activity {
     private String tempDesc;
     private String tempName;
     private double budgetedTime;
-    //private boolean changingActivity = false;
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
     private final Project parent;
 
@@ -70,17 +69,21 @@ public class Activity {
         try {
             if (parent.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) {
                 budgetedTime = time;
-                parent.updateTotalBudgetedTime(budgetedTime);
-            }
+                parent.updateTotalBudgetedTimeForProject(budgetedTime);
+            } else throw new IllegalArgumentException("It's only the project leader that can budget time for activities");
         } catch (Exception e) {
             throw new IllegalArgumentException("It's only the project leader that can budget time for activities");
         }
     }
 
     public void deleteBudgetedTimeForActivity() {
-        if (parent.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) {
-            parent.removeTimeFormTotalBudgetTime(budgetedTime); // Removes the current total budgeted time from project total time
-            budgetedTime = 0; // updates the budgeted time on the activity.
+        try {
+            if (parent.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) {
+                parent.removeTimeFormTotalBudgetTime(budgetedTime); // Removes the current total budgeted time from project total time
+                budgetedTime = 0; // updates the budgeted time on the activity.
+            } else throw new IllegalArgumentException("It's only the project leader that can delete budgeted time for activities");
+        } catch (Exception e) {
+            throw new IllegalArgumentException("It's only the project leader that can delete budgeted time for activities");
         }
     }
 

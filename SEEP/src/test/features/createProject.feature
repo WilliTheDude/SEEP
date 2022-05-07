@@ -47,5 +47,5 @@ Feature: Create a project
   Scenario: Two projects that are given the same name
     Given that there exist a user
     And that there exists a project with name "Project1"
-    When the user creates a new project with name "Project1"
+    When the user creates a new project with name "Project2"
     Then the project is created

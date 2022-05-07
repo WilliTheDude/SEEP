@@ -34,7 +34,6 @@ public class BudgetTimeForActivitySteps {
 
     @When("the project leader budgets time for the activity")
     public void the_project_leader_budgets_time_for_the_activity() {
-        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         double time = 2.4;
         oldTime = activity.getActivity().getBudgetedTime();
         try {
@@ -57,7 +56,6 @@ public class BudgetTimeForActivitySteps {
 
     @When("the project leader changes the budget time for the activity")
     public void the_project_leader_changes_the_budget_time_for_the_activity() {
-        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee()); // sets the project leader
         oldTime = activity.getActivity().getBudgetedTime();
         try {
             activity.getActivity().budgetTimeForActivity(1.4);
@@ -69,7 +67,6 @@ public class BudgetTimeForActivitySteps {
 
     @When("the project leader deletes the budgeted time")
     public void the_project_leader_deletes_the_budgeted_time() {
-        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         oldTime = activity.getActivity().getBudgetedTime();
         try {
             activity.getActivity().deleteBudgetedTimeForActivity();
@@ -85,9 +82,8 @@ public class BudgetTimeForActivitySteps {
 
     @Given("the project has budgeted time")
     public void a_project_with_budgeted_time() {
-        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         try {
-            project.getProject().updateTotalBudgetedTime(7.6);
+            project.getProject().updateTotalBudgetedTimeForProject(7.6);
         } catch(Exception e) {
             errorMessageHolder.setErrorMessage(e.getMessage());
         }
@@ -95,7 +91,6 @@ public class BudgetTimeForActivitySteps {
 
     @When("the project leader checks the total time")
     public void the_budget_leader_checks_the_total_time() {
-        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         try {
             totalTime = project.getProject().getProjectLeader().getTotalProjectTime(project.getProject());
         } catch(Exception e) {
@@ -110,13 +105,37 @@ public class BudgetTimeForActivitySteps {
 
     @When("the user tires to budget time for the activity")
     public void the_user_tires_to_budget_time_for_the_activity() {
-        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
         oldTime = activity.getActivity().getBudgetedTime();
         try {
             activity.getActivity().budgetTimeForActivity(7.2);
         } catch(Exception e) {
             errorMessageHolder.setErrorMessage(e.getMessage());
         }
+    }
+
+    @When("the user tries to delete budgeted time for the activity")
+    public void the_user_tries_to_delete_budgeted_time_for_the_activity() {
+        oldTime = activity.getActivity().getBudgetedTime();
+        try {
+            activity.getActivity().deleteBudgetedTimeForActivity();
+        } catch(Exception e) {
+            errorMessageHolder.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @When("the user tires to update the budgeted time for a project")
+    public void the_user_tires_to_update_the_budgeted_time_for_a_project() {
+        oldTime = project.getProject().getTotalBudgetedTimeForProject();
+        try {
+            project.getProject().updateTotalBudgetedTimeForProject(7.6);
+        } catch(Exception e) {
+            errorMessageHolder.setErrorMessage(e.getMessage());
+        }
+    }
+
+    @Then("the project time isn't updated")
+    public void the_project_time_isn_t_updated() {
+      assertEquals(oldTime, project.getProject().getTotalBudgetedTimeForProject(), 0.0);
     }
 
     @Then("the activity isn't updated")
@@ -126,6 +145,6 @@ public class BudgetTimeForActivitySteps {
 
     @Then("the time isn't added to the total time")
     public void the_time_isn_t_added_to_the_total_time() {
-        assertEquals(totalTime, project.getProject().getTotalBudgetedTime(),0.0);
+        assertEquals(totalTime, project.getProject().getTotalBudgetedTimeForProject(),0.0);
     }
 }

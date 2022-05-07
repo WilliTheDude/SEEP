@@ -10,8 +10,8 @@ public class ProjectHolder {
 
     // Constructor
     public ProjectHolder (){
-
     }
+
 
     // Function for getting and instantiating the project
     public Project getProject() {

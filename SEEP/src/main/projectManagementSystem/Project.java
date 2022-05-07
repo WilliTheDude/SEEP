@@ -17,7 +17,6 @@ public class Project {
     private boolean statusShown;
 
     // Default constructor
-    //TODO see if it's testing that needs to be done here or if there already exists a test that is wrong
     public Project(){}
 
     // parameterised Constructor
@@ -72,11 +71,12 @@ public class Project {
         return true;
     }*/
 
-    public void updateTotalBudgetedTime(double time){
+    public void updateTotalBudgetedTimeForProject(double time){
         try {
             if (this.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) totalBudgetedTime += time;
+            else throw new IllegalArgumentException("It's only the project leader there can update budgeted time for a project");
         } catch(Exception e) {
-            throw new IllegalArgumentException("It's only the project leader there can see the total time of the project");
+            throw new IllegalArgumentException("It's only the project leader there can update budgeted time for a project");
         }
     }
     public void removeTimeFormTotalBudgetTime(double time) {totalBudgetedTime -= time;}
@@ -88,11 +88,11 @@ public class Project {
                 return Integer.parseInt((ProjectManagementSystem.getCalendar().get(Calendar.YEAR) + "").substring(2, 4) + (String.format("%03d", Project.projectNum++)));
             for (Project p : ProjectManagementSystem.getProjects()) {
                 if (this.ID != p.getID()) return Integer.parseInt((ProjectManagementSystem.getCalendar().get(Calendar.YEAR) + "").substring(2, 4) + (String.format("%03d", Project.projectNum++)));
+                else throw new IllegalArgumentException("The ID of two projects may not be the same");
             }
         } catch(Exception e) {
             throw new IllegalArgumentException("The ID of two projects may not be the same");
         }
-        //TODO: fix this return in the test
         return -1;
     }
 
@@ -109,9 +109,9 @@ public class Project {
     }
     // public String getTempDesc(){return tempDesc;}
     // public String getTempName(){return tempName;}
+    //public String getDescription() { return description;} //TODO find were this code is used and fix the tests
     public ArrayList<Activity> getActivities() { return activities;}
     public ArrayList<Employee> getAssignees(){ return assignees;}
-    public String getDescription() { return description;} //TODO find were this code is used and fix the tests
     public String getName() { return name; }
     public int getID() { return ID; }
     public Employee getProjectLeader() { return projectLeader;}
@@ -125,18 +125,18 @@ public class Project {
         return returnActivity;
     }
 
-    /** TODO: find where this method should be used and then check if it's relevant to have it.
-            * public Employee getEmployeeWithName(String name){
-                Employee returnEmployee = null;
-                for (Employee employee: assignees) {
-                    if(employee.getName().equals(name)){
-                        returnEmployee = employee;
-                    }
-                }
-                return returnEmployee;
+    /** TODO
+    public Employee getEmployeeWithName(String name){
+        Employee returnEmployee = null;
+        for (Employee employee: assignees) {
+            if(employee.getName().equals(name)){
+                returnEmployee = employee;
+            }
+        }
+        return returnEmployee;
     }*/
 
-    public double getTotalBudgetedTime(){return totalBudgetedTime;}
+    public double getTotalBudgetedTimeForProject(){return totalBudgetedTime;}
     public boolean getStatusShown() { return statusShown;}
 
     // Setter

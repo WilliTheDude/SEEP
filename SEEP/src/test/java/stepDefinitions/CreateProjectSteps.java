@@ -33,7 +33,11 @@ public class CreateProjectSteps {
     // Check
     @When("the user creates a new project with name {string}")
     public void the_user_creates_a_new_project_with_name(String projectName) {
-        project.setProject(employee.getEmployee().createProject(projectName, "This is a project"));
+        try {
+            project.setProject(employee.getEmployee().createProject(projectName, "This is a project"));
+        } catch(Exception e) {
+            errorMessageHolder.setErrorMessage(e.getMessage());
+        }
     }
 
     // Check

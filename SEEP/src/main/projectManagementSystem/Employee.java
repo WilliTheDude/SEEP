@@ -49,7 +49,7 @@ public class Employee {
      */
     public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
     public ArrayList<Project> getProjects() { return projects; }
-    public double getTotalProjectTime(Project p) { return p.getTotalBudgetedTime();}
+    public double getTotalProjectTime(Project p) { return p.getTotalBudgetedTimeForProject();}
 
     // Setter
     public void setProjectLeader(Project p, Employee e) {

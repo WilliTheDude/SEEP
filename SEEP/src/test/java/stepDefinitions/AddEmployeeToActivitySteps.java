@@ -50,6 +50,7 @@ public class AddEmployeeToActivitySteps {
     public void is_logged_in(String employeeName) {
         employee.setEmployee(ProjectManagementSystem.getEmployeeWithName(employeeName));
         employee.getEmployee().setLoggedIn(true);
+        ProjectManagementSystem.setLoggedInEmployee(employee.getEmployee());
     }
 
     @Given("{string} is part of project {string}")
