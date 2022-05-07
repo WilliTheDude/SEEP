@@ -68,6 +68,7 @@ public class Activity {
         }
         if (assignees.contains(employee1)) {
             assignees.add(employee2);
+            employee2.addEmployeeToActivity(this);
         }
         else throw new IllegalArgumentException("You have no permission to add others to this activity");
     }
@@ -75,6 +76,7 @@ public class Activity {
     public void addAssignee(Employee employee) {
         if (assignees.contains(employee)) return;
         assignees.add(employee);
+        employee.addEmployeeToActivity(this);
     }
 
     public void removeAssignee(Employee employee) {
@@ -137,4 +139,9 @@ public class Activity {
     public void setTempName(String n) { tempName = n; }
     public void setTempDesc(String n) { tempDesc = n;}
     //public void setName(String n) { name = n; }
+
+
+    public Project getParent() {
+        return parent;
+    }
 }
