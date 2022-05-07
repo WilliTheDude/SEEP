@@ -30,17 +30,19 @@ public class CLI {
         ProjectManagementSystem.addEmployeeToList(new Employee("Laura", 53, "female" ));
         ProjectManagementSystem.addEmployeeToList(new Employee("Malik", 46, "male" ));
 
-        //projects.add(new Project("General","Project with general tasks"));
-        //projects.add(new Project("StormWeb","Create website with data of storms"));
+        ProjectManagementSystem.addProjectToList(new Project("General","Project with general tasks"));
+        ProjectManagementSystem.addProjectToList(new Project("StormWeb","Create website with data of storms"));
 
-        //getProjectWithName("General").addAssignee(getEmployeeWithName("Allan"));
-        //getProjectWithName("General").addAssignee(getEmployeeWithName("Bodil"));
-        //getProjectWithName("General").addAssignee(getEmployeeWithName("Carl"));
+        ProjectManagementSystem.getProjectWithName("General").addActivity(new Activity("MainActivity", "The main activity", ProjectManagementSystem.getProjectWithName("General") ));
 
-        //getProjectWithName("General").setProjectLeader(getEmployeeWithName("Allan"));
-        //getProjectWithName("StormWeb").setProjectLeader(getEmployeeWithName("Bodil"));
+        ProjectManagementSystem.getProjectWithName("General").addAssignee(ProjectManagementSystem.getEmployeeWithName("Allan"));
+        ProjectManagementSystem.getProjectWithName("General").addAssignee(ProjectManagementSystem.getEmployeeWithName("Bodil"));
+        ProjectManagementSystem.getProjectWithName("General").addAssignee(ProjectManagementSystem.getEmployeeWithName("Carl"));
+        ProjectManagementSystem.getProjectWithName("General").getActivityWithName("MainActivity").addAssignee(ProjectManagementSystem.getEmployeeWithName("Dagmar"));
 
-        //getProjectWithName("General").addActivity(new Activity("MainActivity", "The main activity", getProjectWithName("General") ));
+
+        ProjectManagementSystem.getProjectWithName("General").setProjectLeader(ProjectManagementSystem.getEmployeeWithName("Allan"));
+        ProjectManagementSystem.getProjectWithName("StormWeb").setProjectLeader(ProjectManagementSystem.getEmployeeWithName("Bodil"));
     }
     public static void run(){
         while (scanner.hasNext()) {
@@ -118,6 +120,24 @@ public class CLI {
     private static void enterHelperActivity(){
         removeOption("enter project");
         removeOption("enter helper activity");
+
+        System.out.println("Choose activity in project (write project on first line and activity on second line):");
+        int i=1;
+        for (Activity activity: ProjectManagementSystem.getLoggedInEmployee().getActivities()) { // listen er tom... hvorfor???
+            System.out.println(i + ": " + activity.getParent().getName() + "\\" + activity.getName());
+            options.add(activity.getName());
+        }
+
+        currentProject = ProjectManagementSystem.getProjectWithName(scanner.nextLine());
+        currentActivity = currentProject.getActivityWithName(scanner.nextLine());
+        path.add(currentProject.getName());
+        path.add(currentActivity.getName());
+        for (Activity activity: currentProject.getActivities()) {
+            removeOption(activity.getName());
+        }
+        options.add("change activity");
+
+        printPath();
 
     }
     private static void createActivity(){

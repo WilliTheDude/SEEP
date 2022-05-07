@@ -80,4 +80,11 @@ public class Employee {
 
     }
     public void setAuthorization(boolean authorization) { this.authorization = authorization; }
+
+    public void addEmployeeToActivity(Activity activity){
+        activities.add(activity);
+    }
+    public ArrayList<Activity> getActivities() {
+        return activities;
+    }
 }
