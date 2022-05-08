@@ -76,9 +76,5 @@ public class CreateProjectSteps {
         employee.setEmployee("Bo", 42,"Man");
     }
 
-    @Given("the User is unauthorised to create a project")
-    public void the_user_is_unauthorised_to_create_a_project() {
-        employee.getEmployee().setAuthorization(false);
-    }
 
 }

@@ -2,7 +2,6 @@
   ## Create a project in general (Main scenario)
   ## Creating a project with only a description
   ## Checks if the user becomes a part of the project upon creation
-  ## Unauthorised user tries to create a project
   ## Adding a project leader to the project
   ## Another project leader is assigned to a project with a project leader
   ## Two projects that are given the same ID
@@ -35,13 +34,6 @@ Feature: Create a project
     When the user creates a valid project
     Then the project is created
     Then the creating user is a part of the project
-
-  ## Unauthorised user tires to create a project
-  Scenario: A unauthorised user tries to create a project
-    Given that there exists a user named "Bob Bobsen"
-    And the User is unauthorised to create a project
-    When the user creates a valid project
-    Then the error message "You are unauthorised to create a project" is given
 
   ## Two projects that are given the same name
   Scenario: Two projects that are given the same name
