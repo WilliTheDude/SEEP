@@ -13,7 +13,6 @@ public class Employee {
      *  * when the program is done see which of the fields we should make local
      */
     private int age;
-    private boolean authorization;
     private boolean loggedIn = false;
     private String ID;
     private String name;
@@ -27,13 +26,11 @@ public class Employee {
         this.age = age;
         this.gender = gender;
         this.ID = generateID(name);
-        authorization = true;
         ProjectManagementSystem.addEmployeeToList(this);
     }
 
     // General methods
     public Project createProject(String name, String description) {
-        if(!authorization) throw new IllegalArgumentException("You are unauthorised to create a project");
         try {
             Project project = new Project(name, description);
             project.getAssignees().add(this); // adds the employee to the assignees of the project
@@ -79,7 +76,7 @@ public class Employee {
         }
         throw new IllegalArgumentException("Has no activity with name " + name);
     }
-    // Setter
+
     public void setProjectLeader(Project p, Employee e) {
         if (p.getProjectLeader() == null && p.getAssignees().contains(this)) {
             p.setProjectLeader(e);
@@ -93,10 +90,7 @@ public class Employee {
         }
     }
 
-    /** TODO: do we use this method for anything in the program:
-            * void addEmployeeToCurrentActivity(Activity a, Employee e) { a.addAssignee(this, e); } )
-     */
-
+    // Setter
     public void setID(String ID) { this.ID = ID; }
     public void addEmployeeToProject(Employee employee2, Project project) {
         try {
@@ -108,7 +102,6 @@ public class Employee {
         }
 
     }
-    public void setAuthorization(boolean authorization) { this.authorization = authorization; }
     public void addEmployeeToActivity(Activity activity){
         activities.add(activity);
     }
