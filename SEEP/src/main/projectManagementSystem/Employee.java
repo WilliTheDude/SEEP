@@ -64,6 +64,14 @@ public class Employee {
     public double getTotalProjectTime(Project p) { return p.getTotalBudgetedTimeForProject();}
     public ArrayList<Activity> getActivities() { return activities; }
 
+    public Project getProjectWithName(String name){
+        Project setP;
+        for (Project p : projects) {
+            if(p.getName().equals(name)) return p;
+        }
+        throw new IllegalArgumentException("No such project is assigned to this employee");
+    }
+
     // Setter
     public void setProjectLeader(Project p, Employee e) {
         if (p.getProjectLeader() == null && p.getAssignees().contains(this)) {

@@ -120,13 +120,17 @@ public class CLI {
             System.out.println(i + ": " + project.getName());
             i++;
         }
-        Project p = ProjectManagementSystem.getProjectWithName(scanner.nextLine());
-        if (!p.getAssignees().contains(ProjectManagementSystem.getLoggedInEmployee())){
-            System.out.println("You are not assigned to this project");
+        Project p;
+        try {
+            p = ProjectManagementSystem.getLoggedInEmployee().getProjectWithName(scanner.nextLine());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
             return;
         }
+
         removeOption("enter project");
         removeOption("enter helper activity");
+        removeOption("create project");
         currentProject = p;
         path.add(currentProject.getName());
         if(currentProject.getProjectLeader() == ProjectManagementSystem.getLoggedInEmployee()){
@@ -184,11 +188,19 @@ public class CLI {
             i++;
 
         }
-        Activity a = currentProject.getActivityWithName(scanner.nextLine());
-        if (!a.getAssignees().contains(ProjectManagementSystem.getLoggedInEmployee())){
-            System.out.println("You are not assigned to this activity");
+        Activity a;
+        try {
+            a = currentProject.getActivityWithName(scanner.nextLine());
+            if (!a.getAssignees().contains(ProjectManagementSystem.getLoggedInEmployee())){
+                System.out.println("You are not assigned to this activity");
+                return;
+            }
+        }catch(Exception e){
+            System.out.println("No such activity exists in this project");
             return;
         }
+
+
         removeOption("enter activity");
         removeOption("create activity");
         currentActivity = a;
