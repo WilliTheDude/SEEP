@@ -8,9 +8,9 @@
   # Can you change the time on a closed activity
 
 Feature: Budgeting time for activities
-  Description: The project manager can budget time for the different activities so the
-  project manager has an overview of the time the project is going to take.
-  Actor: Project manager
+  Description: The project leader can budget time for the different activities so the
+  project leader has an overview of the time the project is going to take.
+  Actor: Project leader
 
   Scenario: Budget time for an activity
     Given that there exists a project with name "project1"

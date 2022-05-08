@@ -13,8 +13,6 @@ public class ProjectManagementSystem {
     private static CLI cli = new CLI();
 
     public static void main(String[] args) {
-        System.out.println(calendar.get(Calendar.YEAR));
-
         cli.setup();
         cli.run();
     }

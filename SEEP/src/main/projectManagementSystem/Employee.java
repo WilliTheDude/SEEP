@@ -72,12 +72,20 @@ public class Employee {
         throw new IllegalArgumentException("No such project is assigned to this employee");
     }
 
+    public Activity getActivityWithName(String name, Project p){
+        Activity setA;
+        for(Activity a : activities){
+            if(a.getParent() == p && a.getName().equals(name)) return a;
+        }
+        throw new IllegalArgumentException("Has no activity with name " + name);
+    }
     // Setter
     public void setProjectLeader(Project p, Employee e) {
         if (p.getProjectLeader() == null && p.getAssignees().contains(this)) {
-            p.addAssignee(e);
             p.setProjectLeader(e);
-            e.projects.add(p);
+            if (this != e) {
+                p.addAssignee(e);
+            }
         } else if (p.getProjectLeader() != null) {
             throw new IllegalArgumentException("There can only be one project leader");
         } else if (!p.getAssignees().contains(this)) {

@@ -118,7 +118,7 @@ public class Project {
     }
     // public String getTempDesc(){return tempDesc;}
     // public String getTempName(){return tempName;}
-    //public String getDescription() { return description;} //TODO find were this code is used and fix the tests
+    public String getDescription() { return description;}
     public ArrayList<Activity> getActivities() { return activities;}
     public ArrayList<Employee> getAssignees(){ return assignees;}
     public String getName() { return name; }
@@ -170,6 +170,7 @@ public class Project {
             throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
         }
         else {
+
             setStatusShown(true);
         }
     }
