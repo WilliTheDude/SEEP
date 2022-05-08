@@ -70,7 +70,7 @@ public class Activity {
             assignees.add(employee2);
             employee2.addEmployeeToActivity(this);
         }
-        else throw new IllegalArgumentException("You have no permission to add others to this activity");
+        else throw new IllegalArgumentException("You don't have permission to add others to this activity");
     }
 
     public void addAssignee(Employee employee) {

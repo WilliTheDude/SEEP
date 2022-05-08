@@ -10,11 +10,10 @@ public class ProjectManagementSystem {
     private static Calendar calendar = Calendar.getInstance();
     private static int projectCounter = 0;
     private static Employee loggedInEmployee;
-    private static CLI cli = new CLI();
 
     public static void main(String[] args) {
-        cli.setup();
-        cli.run();
+        CLI.setup();
+        CLI.run();
     }
 
 

@@ -46,4 +46,9 @@ public class ShowStatusOfProjectSteps {
     public void is_not_a_project_leader_on(String user, String projectName) {
         ProjectManagementSystem.getProjectWithName(projectName).setProjectLeader(null);
     }
+
+    @When("user enters {string}")
+    public void enters(String projectName) {
+        CLI.currentProject = ProjectManagementSystem.getProjectWithName(projectName);
+    }
 }

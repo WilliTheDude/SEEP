@@ -2,6 +2,7 @@ package projectManagementSystem;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import projectManagementSystem.CLI;
 
 public class Project {
     private ArrayList<Employee> assignees = new ArrayList<Employee>();
@@ -170,8 +171,18 @@ public class Project {
             throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
         }
         else {
+            System.out.println(CLI.currentProject.getName() + ": " + CLI.currentProject.getDescription());
+            System.out.println("Activities:");
+            double totalTime = 0;
+            for (Activity a : CLI.currentProject.getActivities()){
+                System.out.println("  " + a.getName() + ": " + a.getDesc() );
+                System.out.println("    time: " + a.getBudgetedTime());
+                System.out.println("    assignees: " + a.getAssignees().size());
+                totalTime+= a.getBudgetedTime();
 
-            setStatusShown(true);
+            }
+            System.out.println("Total time for project: " + totalTime);
+            setStatusShown(true); // Only used for tests
         }
     }
     public void setStatusShown(Boolean b) { statusShown=b;}

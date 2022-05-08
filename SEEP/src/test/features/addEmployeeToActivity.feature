@@ -26,7 +26,7 @@ Feature: Add employee to an activity
     And "user1" is not part of activity "activity1"
     And "user2" is part of project "project1"
     When "user1" adds "user2" to activity "activity1"
-    Then the error message "You have no permission to add others to this activity" is given
+    Then the error message "You don't have permission to add others to this activity" is given
 
   Scenario: The employee is not assigned to this project
     Given "user1" is not part of project "project1"

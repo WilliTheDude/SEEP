@@ -10,9 +10,8 @@ public class CLI {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<String> options = new ArrayList<>();
     private static ArrayList<String> path = new ArrayList<>();
-    private static Project currentProject;
-    private static Activity currentActivity;
-    public CLI(){}
+    public static Project currentProject;
+    public static Activity currentActivity;
     public static void setup(){
         options.add("help");
         options.add("log in");
@@ -306,17 +305,7 @@ public class CLI {
     }
 
     private static void showStatus(){
-        System.out.println(currentProject.getName() + ": " + currentProject.getDescription());
-        System.out.println("Activities:");
-        double totalTime = 0;
-        for (Activity a : currentProject.getActivities()){
-            System.out.println("  " + a.getName() + ": " + a.getDesc() );
-            System.out.println("    time: " + a.getBudgetedTime());
-            System.out.println("    assignees: " + a.getAssignees().size());
-            totalTime+= a.getBudgetedTime();
-
-        }
-        System.out.println("Total time for project: " + totalTime);
+        currentProject.showStatus(ProjectManagementSystem.getLoggedInEmployee());
     }
 
 
