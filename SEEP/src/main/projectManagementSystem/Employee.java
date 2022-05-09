@@ -42,14 +42,8 @@ public class Employee {
         return null;
     }
 
-    //TODO: do we use this method?? ( public void addProject(Project p) { projects.add(p); } )
-
     // Getter
     public String getName() { return name; }
-    /** TODO: do we use these method for anything in the program:
-            * public int getID() { return ID; }
-            * public boolean getAuthorization() { return authorization; }
-     */
     public void setLoggedIn(boolean loggedIn) { this.loggedIn = loggedIn; }
     public ArrayList<Project> getProjects() { return projects; }
     public double getTotalProjectTime(Project p) { return p.getTotalBudgetedTimeForProject();}
