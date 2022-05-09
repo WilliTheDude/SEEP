@@ -2,7 +2,6 @@ package projectManagementSystem;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Scanner;
 
 public class ProjectManagementSystem {
     private static ArrayList<Project> projects = new ArrayList<Project>();
