@@ -30,6 +30,7 @@ public class Activity {
         this.budgetedTime = 0;
     }
 
+    
     // General functions
 
     /*
