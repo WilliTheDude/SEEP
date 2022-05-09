@@ -2,6 +2,7 @@ package projectManagementSystem;
 
 import java.util.ArrayList;
 
+
 /*
 * The function of this class is to store and handle the information of an Activity.
 *
@@ -25,7 +26,6 @@ public class Activity {
         this.name = name;
         this.description = desc;
 
-        // TODO code the method for id generation
         this.ID = Integer.toString(parent.getActivities().size());
         this.budgetedTime = 0;
     }
