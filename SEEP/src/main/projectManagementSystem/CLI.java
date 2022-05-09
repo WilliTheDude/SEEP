@@ -201,6 +201,13 @@ public class CLI {
         currentProject.setTempDesc(desc);
         currentProject.createActivity(ProjectManagementSystem.getLoggedInEmployee());
         currentActivity = currentProject.getActivityWithName(name);
+        if (currentProject.getProjectLeader() == ProjectManagementSystem.getLoggedInEmployee()) {
+            removeOption("show status");
+            options.add("change activity");
+            options.add("budget time");
+            options.add("show budgeted time");
+        }
+        removeOption("show status");
         path.add(currentActivity.getName());
         printPath();
     }
@@ -240,7 +247,6 @@ public class CLI {
             options.add("change activity");
             options.add("budget time");
             options.add("show budgeted time");
-
         }
         printPath();
     }
@@ -268,6 +274,7 @@ public class CLI {
         if(currentProject.getProjectLeader() == ProjectManagementSystem.getLoggedInEmployee()){
             options.add("add employee");
             options.add("create activity");
+            options.add("show status");
         }
         options.add("enter activity");
 
