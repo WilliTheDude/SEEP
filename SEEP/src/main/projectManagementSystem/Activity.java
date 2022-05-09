@@ -53,15 +53,6 @@ public class Activity {
         tempDesc = null;
     }
 
-    /*
-     * TODO: find ud af hvad ideen var bag denne method
-     *  * og hvor den skal bruges
-     *  * // public String status(){
-     *         // Do things with this string
-     *         String returnString = "";
-     *         return returnString;
-     *     }
-     */
     public void addAssignee(Employee employee1, Employee employee2) {
         if (assignees.contains(employee2)) {
             return;
@@ -107,45 +98,14 @@ public class Activity {
 
 
     // Getter
-    /**
-     TODO find the tests where this method is used and correct them so the method is covered:
-        * // public Employee getEmployeeWithName(String name) {
-            Employee returnEmployee = null;
-            for (Employee employee : assignees) {
-                if (employee.getName().equals(name)) {
-                    returnEmployee = employee;
-                }
-            }
-            return returnEmployee;
-        }
-     */
-
-    public ArrayList<Employee> getAssignees() {
-        return assignees;
-    }
-
-    /**
-     * TODO Find out if we want to use these in the code
-        * // public String getTempDesc() { return tempDesc;}
-        * // public String getTempName() { return tempName;}
-     */
+    public ArrayList<Employee> getAssignees() { return assignees; }
     public String getDesc() { return description; }
     public String getName() { return name; }
     public double getBudgetedTime() { return budgetedTime; }
+    public Project getParent() { return parent; }
 
     // Setter
-    /**
-     * TODO find these setters in the tests and the code and then fix it.
-     *     //public void setChangingActivity(Boolean b) {changingActivity = b;}
-     *     //public void setDesc(String d) { description = d; }
-     */
-
     public void setTempName(String n) { tempName = n; }
     public void setTempDesc(String n) { tempDesc = n;}
-    //public void setName(String n) { name = n; }
 
-
-    public Project getParent() {
-        return parent;
-    }
 }

@@ -1,17 +1,11 @@
 package projectManagementSystem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
 
 // Tore
 public class Employee {
 
     // Fields
-    /**
-     * TODO:
-     *  * when the program is done see which of the fields we should make local
-     */
     private int age;
     private boolean loggedIn = false;
     private String ID;

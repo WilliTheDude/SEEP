@@ -7,6 +7,8 @@ Feature: Show project status
 
   Scenario: The project leader choose to see status on a project, that they are assigned to
     Given "project1" has "user1" as project leader
+    And there exist an activity with name "activity1"
+    And "project1" has an activity with name "activity1"
     When user enters "project1"
     And "user1" choose to see project status on "project1"
     Then "user1" is shown the project status connected to "project1"

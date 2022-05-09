@@ -19,7 +19,7 @@ public class ActivityHolder {
 
     // General functions
     private Activity exampleActivity(){
-        return new Activity("exampleActivity", "", new Project());
+        return new Activity("exampleActivity", "", new Project("project1", "this is our project"));
     }
 
 

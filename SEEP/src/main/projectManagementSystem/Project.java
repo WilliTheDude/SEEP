@@ -2,11 +2,11 @@ package projectManagementSystem;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import projectManagementSystem.CLI;
 
+// William
 public class Project {
-    private ArrayList<Employee> assignees = new ArrayList<Employee>();
-    private ArrayList<Activity> activities = new ArrayList<Activity>();
+    private final ArrayList<Employee> assignees = new ArrayList<Employee>();
+    private final ArrayList<Activity> activities = new ArrayList<Activity>();
     private int ID;
     private static int projectNum = 1;
     private String name;
@@ -16,9 +16,6 @@ public class Project {
     private double totalBudgetedTime;
     private Employee projectLeader;
     private boolean statusShown;
-
-    // Default constructor
-    public Project(){}
 
     // parameterised Constructor
     public Project(String name, String description) {
@@ -70,17 +67,6 @@ public class Project {
     }
     public void removeAssignee(Employee e) {assignees.remove(e);}
     public void addActivity(Activity activity){ activities.add(activity); }
-
-    /*
-    public boolean userHaveAccessesToProject() {
-        /**
-         * TODO:
-         * 	* Check if a user is assigned to this project
-         * 	* if the user is assigned to the project grant them accesses
-
-        return true;
-    }*/
-
     public void updateTotalBudgetedTimeForProject(double time){
         try {
             if (this.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) totalBudgetedTime += time;
@@ -90,8 +76,6 @@ public class Project {
         }
     }
     public void removeTimeFormTotalBudgetTime(double time) {totalBudgetedTime -= time;}
-
-    //
     private int generateID() {
         try {
             if (ProjectManagementSystem.getProjects().size() == 0)
@@ -117,8 +101,6 @@ public class Project {
         }
         return returnActivity;
     }
-    // public String getTempDesc(){return tempDesc;}
-    // public String getTempName(){return tempName;}
     public String getDescription() { return description;}
     public ArrayList<Activity> getActivities() { return activities;}
     public ArrayList<Employee> getAssignees(){ return assignees;}
@@ -134,18 +116,6 @@ public class Project {
         }
         return returnActivity;
     }
-
-    /** TODO
-    public Employee getEmployeeWithName(String name){
-        Employee returnEmployee = null;
-        for (Employee employee: assignees) {
-            if(employee.getName().equals(name)){
-                returnEmployee = employee;
-            }
-        }
-        return returnEmployee;
-    }*/
-
     public double getTotalBudgetedTimeForProject(){return totalBudgetedTime;}
     public boolean getStatusShown() { return statusShown;}
 
@@ -153,19 +123,7 @@ public class Project {
     public void setTempName(String n){tempName = n;}
     public void setTempDesc(String n){tempDesc = n;}
     public void setDescription(String description) { this.description = description;}
-    public void setProjectLeader(Employee projectLeader) {
-        this.projectLeader = projectLeader;
-
-    }
-    //only for tests
-    /** TODO find where we use this and if we use it then change the code or the test
-            * public void setName(String name) {
-                for (Project p : ProjectManagementSystem.getProjects()) {
-                    if (!p.getName().equals(this.name)) {
-                    }
-                }
-            }
-     */
+    public void setProjectLeader(Employee projectLeader) { this.projectLeader = projectLeader; }
     public void showStatus(Employee employee){
         if (employee != projectLeader){
             throw new IllegalArgumentException("You are not project leader on this project and can therefore not see status");
@@ -186,6 +144,4 @@ public class Project {
         }
     }
     public void setStatusShown(Boolean b) { statusShown=b;}
-
-
 }
