@@ -34,17 +34,19 @@ public class ProjectManagementSystem {
         Employee returnEmployee = null;
         for (Employee employee: employees) {
             if (employee.getName().equals(employeeName)){
-                returnEmployee = employee;
+                return employee;
             }
         }
-        return returnEmployee;
+        throw new IllegalArgumentException("no employee with chosen name exists");
     }
     static public void addProjectToList(Project project) { projects.add(project); }
     static public void addEmployeeToList(Employee employee) {employees.add(employee);}
-    public static void clearLists(){
+    public static void clearLists(){//For tests
         projects.clear();
         employees.clear();
         loggedInEmployee = null;
+        CLI.currentProject = null;
+        CLI.currentActivity = null;
     }
     public static void setLoggedInEmployee(Employee loggedInEmployee) {ProjectManagementSystem.loggedInEmployee = loggedInEmployee;}
 

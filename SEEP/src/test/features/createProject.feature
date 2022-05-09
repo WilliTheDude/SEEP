@@ -1,14 +1,4 @@
-## The Scenarios that needs to be implemented
-  ## Create a project in general (Main scenario)
-  ## Creating a project with only a description
-  ## Checks if the user becomes a part of the project upon creation
-  ## Adding a project leader to the project
-  ## Another project leader is assigned to a project with a project leader
-  ## Two projects that are given the same ID
-  ## Two projects that are given the same name
-  ## A project with no PL should be accessible for all users
-  ## When a Pl i assigned to the project only assigned users have
-
+#William
 Feature: Create a project
   Description: Users can create projects for different situations, and tasks
   Actor: User

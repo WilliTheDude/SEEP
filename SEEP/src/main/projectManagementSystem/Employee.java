@@ -50,7 +50,6 @@ public class Employee {
     public ArrayList<Activity> getActivities() { return activities; }
 
     public Project getProjectWithName(String name){
-        Project setP;
         for (Project p : projects) {
             if(p.getName().equals(name)) return p;
         }
@@ -58,7 +57,6 @@ public class Employee {
     }
 
     public Activity getActivityWithName(String name, Project p){
-        Activity setA;
         for(Activity a : activities){
             if(a.getParent() == p && a.getName().equals(name)) return a;
         }
