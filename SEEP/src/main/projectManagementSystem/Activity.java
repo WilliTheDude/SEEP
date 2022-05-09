@@ -29,7 +29,6 @@ public class Activity {
         this.ID = Integer.toString(parent.getActivities().size());
         this.budgetedTime = 0;
     }
-
     
     // General functions
 
