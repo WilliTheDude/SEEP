@@ -1,5 +1,6 @@
 package projectManagementSystem;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /*
@@ -75,6 +76,9 @@ public class Activity {
     }
 
     public void budgetTimeForActivity(double time) {
+        if(time < 0){
+            throw new IllegalArgumentException("You can only budget positive time");
+        }
         try {
             if (parent.getProjectLeader().equals(ProjectManagementSystem.getLoggedInEmployee())) {
                 budgetedTime = time;

@@ -188,6 +188,11 @@ public class CLI {
         removeOption("enter project");
         removeOption("enter helper activity");
         removeOption("create project");
+        if(p.getProjectLeader() == ProjectManagementSystem.getLoggedInEmployee()){
+            options.add("change activity");
+            options.add("budget time");
+            options.add("show budgeted time");
+        }
 
     }
     private static void createActivity(){
@@ -257,7 +262,10 @@ public class CLI {
         currentActivity.setTempName(name);
         System.out.println("Write new description of activity " + name);
         currentActivity.setTempDesc(scanner.nextLine());
+        path.remove(currentActivity.getName());
         currentActivity.changeActivity();
+        path.add(currentActivity.getName());
+
     }
     private static void setProjectLeader(){
         System.out.println("Write name of the project leader:");
@@ -304,8 +312,15 @@ public class CLI {
             System.out.println(e.getMessage());
             return;
         }
-        System.out.println("Budgeted time set to " + time);
-        currentActivity.budgetTimeForActivity(time);
+        try{
+            currentActivity.budgetTimeForActivity(time);
+            System.out.println("Budgeted time set to " + time);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+
     }
     private static void showBudgetedTime(){
         System.out.println(currentActivity.getBudgetedTime());
