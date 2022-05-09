@@ -1,3 +1,4 @@
+#Helene
 Feature: Change info of activity
   Descriptions: An employee changes the information of an activity
   Background:

@@ -1,12 +1,4 @@
-## Scenarios to be implemente
-  # Budgeting time for an activity
-  # Change budget time
-  # Delete budget time
-  # Get total amount of budget time
-  # Can an employee budget time for an activity
-  # When deleting an activity does the time gets deleted as well
-  # Can you change the time on a closed activity
-
+#William
 Feature: Budgeting time for activities
   Description: The project leader can budget time for the different activities so the
   project leader has an overview of the time the project is going to take.
