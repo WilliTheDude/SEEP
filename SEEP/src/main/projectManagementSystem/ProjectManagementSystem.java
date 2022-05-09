@@ -42,10 +42,12 @@ public class ProjectManagementSystem {
     }
     static public void addProjectToList(Project project) { projects.add(project); }
     static public void addEmployeeToList(Employee employee) {employees.add(employee);}
-    public static void clearLists(){
+    public static void clearLists(){//For tests
         projects.clear();
         employees.clear();
         loggedInEmployee = null;
+        CLI.currentProject = null;
+        CLI.currentActivity = null;
     }
     public static void setLoggedInEmployee(Employee loggedInEmployee) {ProjectManagementSystem.loggedInEmployee = loggedInEmployee;}
 
